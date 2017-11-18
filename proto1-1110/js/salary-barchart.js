@@ -15,13 +15,13 @@ function createVis(error, data1, data2) {
     var salaryVis = new SalaryVis("salary-barchart", data1, data2);
 
     document.getElementById("salary2013").onclick = function(){
-        console.log(data1);
+        //console.log(data1);
         salaryVis.data = data1;
         salaryVis.updateVis();
         //initBarChart(data1);
     }
     document.getElementById("salary2014").onclick = function(){
-        console.log(data2);
+       // console.log(data2);
         salaryVis.data = data2;
         salaryVis.updateVis();
         //drawBarChart(data2);
@@ -100,7 +100,7 @@ SalaryVis.prototype.initVis = function(data){
 SalaryVis.prototype.updateVis = function(){
 
     var vis = this;
-    console.log(vis.data);
+   // console.log(vis.data);
 
     //get domain
     vis.names = [];
