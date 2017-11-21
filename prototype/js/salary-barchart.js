@@ -1,6 +1,12 @@
 
+//************************  guess *************************
+
+document.getElementById("guess2").onclick = function(){
+    document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
+}
 
 
+//************************  bar chart *************************
 //load data
 queue()
     .defer(d3.csv,("data/highest_paycheck_2013.csv"))
@@ -149,7 +155,13 @@ SalaryVis.prototype.updateVis = function(){
         .attr("y",function(d){
             return vis.y(d.Paycheck)-10;
         })
-        .attr("fill", "grey");
+        .attr("fill", function(d){
+            if (d.Gender==="female"){
+                return "red";
+            }else{
+                return "blue";
+            }
+        });
 
     pays.exit().remove();
 
