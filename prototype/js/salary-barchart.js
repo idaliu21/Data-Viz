@@ -10,6 +10,7 @@ document.getElementById("guess2").onclick = function(){
 
 
 //************************  bar chart *************************
+
 //load data
 queue()
     .defer(d3.csv,("data/highest_paycheck_2013.csv"))
@@ -37,7 +38,6 @@ function createVis(error, data1, data2) {
     }
 }
 
-
 var changeToNumber = function(data){
     data.forEach(function(element){
         element.Age = +element.Age;
@@ -53,15 +53,6 @@ SalaryVis = function(_parentElement, _data1, _data2,){
 
     this.data = _data1;
 
-    //sort data
-    this.data1 = this.data1.sort(function (a, b) {
-        return b.Paycheck - a.Paycheck;
-    });
-    this.data2 = this.data2.sort(function (a, b) {
-        return b.Paycheck - a.Paycheck;
-    });
-
-
     this.initVis();
 }
 
@@ -71,8 +62,6 @@ SalaryVis = function(_parentElement, _data1, _data2,){
 SalaryVis.prototype.initVis = function(data){
 
     var vis = this;
-
-    //sort data
     vis.data = vis.data.sort(function (a, b) {
         return b.Paycheck - a.Paycheck;
     });
@@ -151,13 +140,7 @@ SalaryVis.prototype.updateVis = function(){
             return vis.height-vis.y(d.Paycheck);
         })
         .attr("width",vis.x.bandwidth())
-        .attr("fill", function(d){
-            if (d.Gender==="female"){
-                return "red";
-            }else{
-                return "blue";
-            }
-        });
+        .attr("fill", "grey");
 
     bars.exit().remove();
 
