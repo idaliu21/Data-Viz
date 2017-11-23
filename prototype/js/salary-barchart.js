@@ -1,5 +1,15 @@
 
+//************************  guess *************************
 
+document.getElementById("guess2").onclick = function(){
+    document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
+}
+
+
+
+
+
+//************************  bar chart *************************
 
 //load data
 queue()
@@ -52,7 +62,9 @@ SalaryVis = function(_parentElement, _data1, _data2,){
 SalaryVis.prototype.initVis = function(data){
 
     var vis = this;
-
+    vis.data = vis.data.sort(function (a, b) {
+        return b.Paycheck - a.Paycheck;
+    });
 
     vis.margin = {top: 20, right: 10, bottom: 150, left: 50};
     vis.width = 800 - vis.margin.left - vis.margin.right;
