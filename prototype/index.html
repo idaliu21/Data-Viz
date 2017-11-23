@@ -50,7 +50,6 @@
         </div>
       </form>
       <button type="button" class="btn btn-primary">Guess</button>
-      <div id="guess-result2"></div>
     </div>
 
     <div class="salary-picwall container">
@@ -72,7 +71,10 @@
   <div class="film-data">
     <h3>Data In the Film</h3>
     <h3> Age of Actors and Actress Winning Oscar Award</h3>
+    <button type="button" class="btn" id="Best">Best Actor/Actress</button>
+    <button type="button" class="btn" id="Nominee">Best Actor/Actress Nominee</button>
     <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
+    <div class="oscar-best-age" id="oscar-best-age"></div>
     <h3> Screenplay Dialogue, Broke by Gender</h3>
     <div class="disney" id="disney"></div>
   </div>
@@ -89,7 +91,8 @@
   <!-- Load JS libraries -->
   <script src="js/d3.js"></script>
   <script src="js/jquery.min.js"></script>
-<script src="js/queue.v1.min.js"></script>  <script src="js/bootstrap.min.js"></script>
+<script src="js/queue.v1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
   <script src="js/leaflet.js"></script>
 <script src="js/d3-tip.js"></script>
 
@@ -100,7 +103,8 @@
   <!-- Load data, create visualizations -->
   <script src="js/main.js"></script>
   <script src="js/salary-barchart.js"></script>
-  <script src="js/oscar-nomination-age.js"></script>
+<script src="js/oscar-best-age.js"></script>
+<!--   <script src="js/oscar-nomination-age.js"></script>  -->
 <script src="js/disney.js"></script>
 
 
