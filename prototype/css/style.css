@@ -38,14 +38,70 @@ h3{
   height: 500px;
 }
 
+/*******************************
+salary
+********************************/
+
 .salary{
   background-color:lightgrey;
 }
 
+.picrow{
+  margin-top: 20px;
+}
 
 .guess-img{
   width: 80%;
 }
+
+/*******************************
+salary
+********************************/
+
+.wall {
+  position: relative;
+}
+
+.picwall {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  overflow: hidden;
+  width: 85%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.wall:hover .overlay {
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
 
 .film-data{
   background-color:white;
