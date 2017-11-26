@@ -53,7 +53,7 @@ var changeToNumber = function(data){
 }
 
 
-SalaryVis = function(_parentElement, _data1, _data2,){
+SalaryVis = function(_parentElement, _data1, _data2){
     this.parentElement = _parentElement;
     this.data1=_data1;
     this.data2=_data2;

@@ -7,6 +7,9 @@ var disneytop =100;
 var disneyleft = 100;
 var disneypadding= 16;
 
+var color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
+var color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
+
 var formatPercent = d3.format(".0%");
 
 var disney_data=[];
@@ -23,12 +26,6 @@ var tool_tip_disney = d3.tip()
     .html(function(d) {
         return d.title +"<br>"+"female: " + Math.round(d.female_per * 100)+"%"+"</br>"+"male: " + Math.round(d.male_per*100)+"%" });
 svg_filmdata.call(tool_tip_disney);
-
-
-// d3.json("data/gender_distribution.json", function(data) {
-//     console.log(data);
-// });
-
 
 // load data for disney
 d3.csv("data/disney.csv", function(csv) {
@@ -48,8 +45,6 @@ d3.csv("data/disney.csv", function(csv) {
 
     createVis();
     // Create visualization instances
-    // var disney = new Disney("film-data", disney_data);
-
 });
 
 
@@ -105,47 +100,50 @@ function createVis() {
         .text("Words for male");
 
 
-
-    // // gradient
-    // var gradient = svg_filmdata.append("defs")
-    //     .append("linearGradient")
-    //     .attr("id", "gradient")
-    //     .attr("x1", "0%")
-    //     .attr("y1", "0%")
-    //     .attr("x2", "100%")
-    //     .attr("y2", "100%")
-    //     .attr("spreadMethod", "pad");
-    //
-    // gradient.append("stop")
-    //     .attr("offset", "0%")
-    //     .attr("stop-color", "#0c0")
-    //     .attr("stop-opacity", 1);
-    //
-    // gradient.append("stop")
-    //     .attr("offset", "100%")
-    //     .attr("stop-color", "#c00")
-    //     .attr("stop-opacity", 1);
-
-
     //append circles
     svg_filmdata.selectAll("circle")
         .data(disney_data)
         .enter()
         .append("circle")
         .attr("class", "dot")
-        // .attr("fill","black")
-        .attr("fill", function (d) {
-            if (d.female_per>0.5){
-                return "red";
-            }
-            else{
-                return "blue";
-            }
-            // "url(#gradient)")
-        })
+        // .attr("fill", function (d) {
+        //     if (d.female_per>0.5){
+        //         return "red";
+        //     }
+        //     else{
+        //         return "blue";
+        //     }
+        //     // "url(#gradient)")
+        // })
         .attr("r", radius)
         .on("mouseover", tool_tip_disney.show)
         .on("mouseout", tool_tip_disney.hide)
+        .style("fill", function (d,i) {
+            var index_;
+            if (i % 25 ==0) {index_ = (i / 25) + 1}
+            else{ index_=Math.ceil(i/25) }
+            // return "rgb("+0+","+(255-index_*3)+", " + (255-index_*3) + ")"
+            if (index_ < 50) {
+                return color_blue[0]}
+            else if (index_ < 58) {
+                return color_blue[1]}
+            else if (index_ < 62) {
+                return color_blue[2]}
+            else if (index_ < 65) {
+                return color_blue[3]}
+            else if (index_ < 68) {
+                return color_blue[4]}
+
+            else if (index_ < 70) {
+                return color_orange[0]}
+            else if (index_ < 72) {
+                return color_orange[2]}
+            else if (index_ < 74) {
+                return color_orange[3]}
+            else if (index_ < 76) {
+                return color_orange[4]}
+            else {return color_orange[5] }
+        })
         .attr("cy",function (d,index) {
             // console.log(index);
             if (index % 25 ==0){
@@ -163,20 +161,8 @@ function createVis() {
                     return (Math.ceil(index/25)) * disneypadding + disneyleft }
             }
         );
-    document.getElementById("film-data").innerHTML = "Film Dialogue Broken-down by Gender";
 
-
+    // document.getElementById("film-data").innerHTML = "Film Dialogue Broken-down by Gender";
 
 
 }
-
-// queue()
-//     .defer(d3.json,"data/gender_distribution.json")
-//     //.defer(d3.json,"data/myWorldFields.json")
-//     .await(createVis);
-//
-//
-//
-// function createVis(error, Gender){
-//     console.log(Gender);
-// }
