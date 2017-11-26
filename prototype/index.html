@@ -152,17 +152,23 @@
     <button type="button" class="btn" id="Nominee">Best Actor/Actress Nominee</button>
     <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
     <div class="oscar-best-age" id="oscar-best-age"></div>
-    <h3> Screenplay Dialogue, Broke by Gender</h3>
-    <div class="disney" id="disney"></div>
+    <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
+    <div class="disney" id="disney">
+      <div></div>
+    </div>
   </div>
 
   <!-- Beyond Data  -->
   <div class="nudity">
-    <h3>Beyond Data - Nudity</h3>
+    <h3 class="head_white">Beyond Data - Nudity</h3>
+    <!--<img src="pic/nudity1.jpg" id="nudity">-->
+    <div class="col-sm-5" id = "reveal"></div>
+    <div class="col-sm-2" id = "naked"></div>
+    <div class="col-sm-5" id = "partially"></div>
+
   </div>
   <div class="young-face">
     <h3>Beyond Data - Young Faces</h3>
-
   </div>
 
   <!-- Load JS libraries -->
@@ -174,15 +180,17 @@
 <script src="js/d3-tip.js"></script>
 
 
+
   <!-- Visualization objects -->
   <script src="js/stationMap.js"></script>
 
   <!-- Load data, create visualizations -->
   <script src="js/main.js"></script>
   <script src="js/salary-barchart.js"></script>
-<script src="js/oscar-best-age.js"></script>
+  <script src="js/oscar-best-age.js"></script>
 <!--   <script src="js/oscar-nomination-age.js"></script>  -->
-<script src="js/disney.js"></script>
+  <script src="js/disney.js"></script>
+  <script src="js/nudity.js"></script>
 
 
 </body>

@@ -126,23 +126,41 @@ salary wall
 
 
 
-
-
-
-
-
-
 .film-data{
   background-color:white;
   height: 2000px;
 }
 
 .nudity{
-  background-color:lightgrey;
-  height: 500px;
+  height: 1200px;
 }
 
 .young-face{
   background-color:white;
   height: 1000px;
+}
+
+
+/*******************************
+disney
+********************************/
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+/*******************************
+nudity
+********************************/
+
+.nudity{
+  background-image:url("../pic/nudity1.jpg");
+}
+
+.head_white{
+  color: white;
+  font-size: 40px;
 }
