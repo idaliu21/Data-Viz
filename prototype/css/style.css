@@ -55,8 +55,9 @@ salary
 ********************************/
 
 .salary{
-    background-color:black;
+    background-color:darkgrey;
 }
+
 #paycheck-background{
   width: 100%
 }

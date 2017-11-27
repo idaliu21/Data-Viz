@@ -106,10 +106,12 @@ SalaryVis.prototype.initVis = function(data){
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
-        .attr("transform", "translate(0," + vis.height + ")");
+        .attr("transform", "translate(0," + vis.height + ")")
+        .attr("fill", "grey");
 
     vis.svg.append("g")
-        .attr("class", "y-axis axis");
+        .attr("class", "y-axis axis")
+        .attr("fill", "grey");
 
     vis.updateVis();
 
@@ -185,7 +187,8 @@ SalaryVis.prototype.updateVis = function(){
         .attr("dy", -vis.x.bandwidth()/2)
         .attr("transform", function(d) {
             return "rotate(-90)"
-        });
+        })
+        .attr("fill", "white");
 
 
 
