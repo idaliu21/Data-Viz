@@ -54,6 +54,9 @@ gender-composition
 salary
 ********************************/
 
+.salary{
+    background-color:black;
+}
 #paycheck-background{
   width: 100%
 }
@@ -77,9 +80,7 @@ salary
   background-size: cover;
 }
 
-.salary{
-  background-color:lightgrey;
-}
+
 
 .picrow{
   margin-top: 20px;
