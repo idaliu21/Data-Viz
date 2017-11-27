@@ -2,7 +2,9 @@
 //************************  guess *************************
 
 document.getElementById("guess2").onclick = function(){
-    document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
+
+    document.getElementById("formGroupExampleInput").value = "33";
+    //document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
 }
 
 
@@ -16,6 +18,9 @@ queue()
     .defer(d3.csv,("data/highest_paycheck_2013.csv"))
     .defer(d3.csv,("data/highest_paycheck_2014.csv"))
     .await(createVis);
+    //.await(attachPhoto);
+
+
 
 function createVis(error, data1, data2) {
     changeToNumber(data1);
@@ -30,12 +35,14 @@ function createVis(error, data1, data2) {
         salaryVis.updateVis();
         //initBarChart(data1);
     }
+
     document.getElementById("salary2014").onclick = function(){
        // console.log(data2);
         salaryVis.data = data2;
         salaryVis.updateVis();
         //drawBarChart(data2);
     }
+
 }
 
 var changeToNumber = function(data){
@@ -46,7 +53,7 @@ var changeToNumber = function(data){
 }
 
 
-SalaryVis = function(_parentElement, _data1, _data2,){
+SalaryVis = function(_parentElement, _data1, _data2){
     this.parentElement = _parentElement;
     this.data1=_data1;
     this.data2=_data2;
@@ -178,8 +185,10 @@ SalaryVis.prototype.updateVis = function(){
         .attr("dy", -vis.x.bandwidth()/2)
         .attr("transform", function(d) {
             return "rotate(-90)"
-        })
-    ;
+        });
+
+
+
 }
 
 

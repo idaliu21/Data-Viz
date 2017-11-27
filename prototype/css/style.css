@@ -33,19 +33,110 @@ h3{
   height: 500px;
 }
 
+/*******************************
+gender-composition
+********************************/
+
 .gender-composition{
   background-color:white;
-  height: 500px;
+
+}
+
+.female-icon{
+  width: 10%
+}
+.male-icon{
+  width: 10%
+}
+
+
+/*******************************
+salary
+********************************/
+
+#paycheck-background{
+  width: 100%
+}
+
+.salary-guess-box {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/pic/paycheck.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .salary{
   background-color:lightgrey;
 }
 
+.picrow{
+  margin-top: 20px;
+}
 
 .guess-img{
   width: 80%;
 }
+
+/*******************************
+salary wall
+********************************/
+
+.wall {
+  position: relative;
+}
+
+.picwall {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guess-text{
+  position:absolute;
+}
+
+
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  overflow: hidden;
+  width: 85%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.wall:hover .overlay {
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+
 
 .film-data{
   background-color:white;
@@ -53,11 +144,35 @@ h3{
 }
 
 .nudity{
-  background-color:lightgrey;
-  height: 500px;
+  height: 1200px;
 }
 
 .young-face{
   background-color:white;
   height: 1000px;
+}
+
+
+/*******************************
+disney
+********************************/
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+/*******************************
+nudity
+********************************/
+
+.nudity{
+  background-image:url("../pic/nudity1.jpg");
+}
+
+.head_white{
+  color: white;
+  font-size: 40px;
 }
