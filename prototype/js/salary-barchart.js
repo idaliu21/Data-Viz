@@ -149,7 +149,7 @@ SalaryVis.prototype.updateVis = function(){
             return vis.height-vis.y(d.Paycheck);
         })
         .attr("width",vis.x.bandwidth())
-        .attr("fill", "grey");
+        .attr("fill", "white");
 
     bars.exit().remove();
 
@@ -170,7 +170,7 @@ SalaryVis.prototype.updateVis = function(){
         .attr("y",function(d){
             return vis.y(d.Paycheck)-10;
         })
-        .attr("fill", "grey");
+        .attr("fill", "white");
 
     pays.exit().remove();
 
@@ -187,8 +187,7 @@ SalaryVis.prototype.updateVis = function(){
         .attr("dy", -vis.x.bandwidth()/2)
         .attr("transform", function(d) {
             return "rotate(-90)"
-        })
-        .attr("fill", "white");
+        });
 
 
 
