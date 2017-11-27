@@ -55,7 +55,19 @@ salary
 ********************************/
 
 .salary{
-    background-color:darkgrey;
+    background-color:black;
+    color:white;
+}
+.axis line{
+    stroke: white;
+}
+
+.axis path{
+    stroke: white;
+}
+
+.axis text{
+    fill: white;
 }
 
 #paycheck-background{
@@ -66,6 +78,27 @@ salary
   position: relative;
   text-align: center;
   color: white;
+}
+
+.salary-guess-top{
+    position:absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.salary-guess-left{
+    position:absolute;
+    top:70%;
+    left:25%;
+    transform: translate(-50%, -50%);
+}
+
+.salary-guess-right{
+    position:absolute;
+    top:70%;
+    left:75%;
+    transform: translate(-50%, -50%);
 }
 
 .bg {
@@ -90,7 +123,9 @@ salary
 .guess-img{
   width: 80%;
 }
-
+.salary-btn{
+    background-color: none;
+}
 /*******************************
 salary wall
 ********************************/
