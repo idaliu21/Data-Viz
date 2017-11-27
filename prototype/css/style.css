@@ -33,10 +33,22 @@ h3{
   height: 500px;
 }
 
+/*******************************
+gender-composition
+********************************/
+
 .gender-composition{
   background-color:white;
-  height: 500px;
+
 }
+
+.female-icon{
+  width: 10%
+}
+.male-icon{
+  width: 10%
+}
+
 
 /*******************************
 salary
