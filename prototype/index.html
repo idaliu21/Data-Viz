@@ -15,13 +15,24 @@
 </head>
 <body>
 <!-- Load Google Font -->
-  <div class="banner">
-    <h1>Gender Inequity Among Actors</h1>
-    <h3>Male Actors earn 52,249 on average<br>Guess how much female actress earn</h3>
-    <div class="place-holder"></div>
-    <button type="button" class="btn btn-primary">Guess</button>
+<div class="banner">
+  <h1 class="white_text">Gender Inequity Among Actors</h1>
+  <h3 class="white_text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
+  <p id="barcontainer" >
+    <svg width="1000" height="15"> <rect id="bar"> </rect></svg>
+  </p>
+  <p class="white_text slidetext">
+    Male Average Salary: 52,249 dollars/Per Year
+  </p>
+  <p id="slidecontainer">
+    <input class="slider" type="range" min="20,000" max="90,000" step="1" value="0" orient="horizontal">
+  </p>
+  <p class="white_text slidetext">
+    Please use the slider to guess the average salary of an actress per year.
+  </p>
+  <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
 
-  </div>
+</div>
 
 <!-- Gender Composition -->
   <div class="gender-composition">
@@ -62,7 +73,7 @@
     </div>
 
     <div class="salary-picwall container">
-      <h3>salary-picwall</h3>
+      <h3>salary-picwall for TOP FIVE Paid Actors and Actresses</h3>
       <div class="row picrow">
         <div class="col-lg-1"></div>
 
@@ -155,8 +166,10 @@
   <div class="film-data">
     <h3>Data In the Film</h3>
     <h3> Age of Actors and Actress Winning Oscar Award</h3>
-    <button type="button" class="btn" id="Best">Best Actor/Actress</button>
-    <button type="button" class="btn" id="Nominee">Best Actor/Actress Nominee</button>
+    <div class="buttonBest">
+      <button type="button" class="btn btn-primary" id="Best" >Best Actor/Actress</button>
+      <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
+    </div>
     <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
     <div class="oscar-best-age" id="oscar-best-age"></div>
     <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
@@ -196,7 +209,6 @@
   <script src="js/gender-composition.js"></script>
   <script src="js/salary-barchart.js"></script>
   <script src="js/oscar-best-age.js"></script>
-<!--   <script src="js/oscar-nomination-age.js"></script>  -->
   <script src="js/disney.js"></script>
   <script src="js/nudity.js"></script>
 
