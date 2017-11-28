@@ -26,43 +26,126 @@
 <!-- Gender Composition -->
   <div class="gender-composition">
     <h3>Gender Composition</h3>
-    <div class="place-holder"></div>
+
+    <div class="container">
+      <div class="col-lg-6" id="male-comp">
+
+      </div>
+      <div class="col-lg-6" id="female-comp">
+        <img class="female-icon" src="icons/female.svg" alt="Kiwi standing on oval">
+        <img class="female-icon" src="icons/female.svg" alt="Kiwi standing on oval">
+      </div>
+    </div>
+
   </div>
 
 <!-- Salaries -->
   <div class="salary">
 
-    <h3>Salaries</h3>
-
-    <div class="salary-guess container">
-      <h3>Bradly Cooper earn XXXX in XXXX<br>Guess how much Jennifer Lawerens earn in XXXX</h3>
-      <div class="col-lg-6">
-        <img src="pic/2014_4.jpeg" class="guess-img">
+    <div class="salary-guess-box">
+      <h3 class="salary-guess-top">Highest Paycheck for Actors and Actress</h3>
+      <div class="salary-guess-left">
+        <p>Robert Downey Jr get the</p>
+        <h4>75 million</h4>
+        <p>paycheck in “Iron Man”</p>
       </div>
-      <div class="col-lg-6">
-        <img src="pic/2014_10.jpeg" class="guess-img">
+      <div class="salary-guess-right">
+        <p>Angelina Jolie get the</p>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+        <h4>million</h4>
+        <p>paycheck in “Maleficent”</p>
+        <button type="button" class="btn btn-primary" id="guess2">Guess</button>
       </div>
 
-      <form>
-        <div class="form-group">
-          <label for="formGroupExampleInput">Example label</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-        </div>
-      </form>
-      <button type="button" class="btn btn-primary" id="guess2">Guess</button>
-      <div id="guess-result2"></div>
+      <img src="pic/paycheck.jpg" id="paycheck-background">
+
     </div>
 
     <div class="salary-picwall container">
       <h3>salary-picwall</h3>
-      <div class="place-holder"></div>
+      <div class="row picrow">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Channing Tatum<br>60 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_2.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Hugh Jackman<br>55 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_3.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Mark Wahlberg<br>52 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_4.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Dwayne Johnson<br>46 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_5.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Leonardo Dicaprio<br>39 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_6.jpeg">
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+
+      <div class="row picrow">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Jennifer Lawrence<br>26 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_12.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Kristen Stewart<br>22 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_13.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Jennifer Aniston<br>20 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_14.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Emma Stone<br>16 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_15.jpeg">
+        </div>
+        <div class="col-lg-2 wall">
+          <div class="overlay ">
+            <div class="text">Charlize Theron<br>15 Million</div>
+          </div>
+          <img class="picwall" src="pic/2013/2013_16.jpeg">
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+
+
+
+
+
     </div>
 
     <div class="container">
 
       <h3>salary-barchart</h3>
-      <button type="button" class="btn" id="salary2013">2013</button>
-      <button type="button" class="btn" id="salary2014">2014</button>
+      <button type="button" class="salary-btn" id="salary2013">2013</button>
+      <button type="button" class="salary-btn" id="salary2014">2014</button>
       <div class="salary-barchart" id="salary-barchart"></div>
 
     </div>
@@ -76,17 +159,23 @@
     <button type="button" class="btn" id="Nominee">Best Actor/Actress Nominee</button>
     <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
     <div class="oscar-best-age" id="oscar-best-age"></div>
-    <h3> Screenplay Dialogue, Broke by Gender</h3>
-    <div class="disney" id="disney"></div>
+    <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
+    <div class="disney" id="disney">
+      <div></div>
+    </div>
   </div>
 
   <!-- Beyond Data  -->
   <div class="nudity">
-    <h3>Beyond Data - Nudity</h3>
+    <h3 class="head_white">Beyond Data - Nudity</h3>
+    <!--<img src="pic/nudity1.jpg" id="nudity">-->
+    <div class="col-sm-5" id = "reveal"></div>
+    <div class="col-sm-2" id = "naked"></div>
+    <div class="col-sm-5" id = "partially"></div>
+
   </div>
   <div class="young-face">
     <h3>Beyond Data - Young Faces</h3>
-
   </div>
 
   <!-- Load JS libraries -->
@@ -98,15 +187,18 @@
 <script src="js/d3-tip.js"></script>
 
 
+
   <!-- Visualization objects -->
   <script src="js/stationMap.js"></script>
 
   <!-- Load data, create visualizations -->
   <script src="js/main.js"></script>
+  <script src="js/gender-composition.js"></script>
   <script src="js/salary-barchart.js"></script>
-<script src="js/oscar-best-age.js"></script>
+  <script src="js/oscar-best-age.js"></script>
 <!--   <script src="js/oscar-nomination-age.js"></script>  -->
-<script src="js/disney.js"></script>
+  <script src="js/disney.js"></script>
+  <script src="js/nudity.js"></script>
 
 
 </body>
