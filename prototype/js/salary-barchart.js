@@ -1,6 +1,6 @@
 
 //************************  guess *************************
-//hsjshdlad
+
 
 document.getElementById("guess2").onclick = function(){
 
