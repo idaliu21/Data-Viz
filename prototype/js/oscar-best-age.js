@@ -8,7 +8,8 @@ queue()
     .defer(d3.csv,("data/actress_new.csv"))
     .await(createVis);
 
-
+var orange=["#FFF2ED", "#FFE2D6", "#FFD1C0", "#FFC1A9", "#FFB193", "#FFA17C", "#FF9066","#FF804F"];
+var blue=["#EBF5FB", "#D6EAF8","#AED6F1", "#85C1E9","#5DADE2", "#3498DB" ,"#2E86C1","#2874A6"];
 var ageVis;
 function createVis(error, Data1,Data2,Data3,Data4 ) {
     if (error) {
@@ -148,6 +149,77 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
     vis.updateVis();
    // vis.updateVis();
 
+    vis.svg.selectAll(".Legend1")
+        .data(orange)
+        .enter()
+        .append('rect')
+        .attr("class", "Legend1")
+        .attr("x",0)
+        .attr("y", function(d,i){
+            return i*12-35;
+        })
+        .attr("width",40)
+        .attr("height", 12)
+        .attr("fill", function(d)
+        {
+            return d;
+        });
+
+    vis.svg.selectAll(".Legend2")
+        .data(blue)
+        .enter()
+        .append('rect')
+        .attr("class", "Legend1")
+        .attr("x",0)
+        .attr("y", function(d,i){
+            return i*12-35+150;
+        })
+        .attr("width",40)
+        .attr("height", 12)
+        .attr("fill", function(d)
+        {
+            return d;
+        });
+
+
+    vis.svg.append('text')
+        .attr("class", "LegendLabel")
+        .attr("x",0)
+        .attr("y",-40)
+        .attr("fill", "#4A4A4A ")
+        .text("Age Distribution");
+
+
+
+    vis.svg.selectAll(".LegendText1")
+        .data(orange)
+        .enter()
+        .append('text')
+        .attr("class", "LegendText1")
+        .attr("x",45)
+        .attr("y", function(d,i){
+            return i*12-35+12;
+        })
+        .attr("fill", "#4A4A4A ")
+        .attr("font-size", "11px")
+        .text(function(d,i){
+            return parseInt((i+1)*10)+" - "+parseInt((i+2)*10);
+        })
+
+    vis.svg.selectAll(".LegendText2")
+        .data(orange)
+        .enter()
+        .append('text')
+        .attr("class", "LegendText2")
+        .attr("x",45)
+        .attr("y", function(d,i){
+            return i*12-35+12+150;
+        })
+        .attr("fill", "#4A4A4A ")
+        .attr("font-size", "11px")
+        .text(function(d,i){
+            return parseInt((i+1)*10)+" - "+parseInt((i+2)*10);
+        })
 
 
 
@@ -164,6 +236,7 @@ ageVis.prototype.updateVis = function() {
     var interval_width=60;
     var interval_height=35;
     var rectActor,rectActress;
+    var mouseovertext1;
 
 
 
@@ -211,23 +284,25 @@ ageVis.prototype.updateVis = function() {
             .attr('width', rect_width)
             .attr('height', rect_height)
             .attr("fill", function(d){
-                return "rgb("+0+","+(255-d.Age*3)+", " + (255-d.Age*3) + ")"
+                var color=parseInt((d.Age-10)/10)
+                return blue[color];
             })
             .on("mouseover", function (d) {
 
-                vis.mouseovertext1 = vis.g.append("text")
+                mouseovertext1 = vis.g.append("text")
                     .attr("class", "tooltip")
                     .attr("x", function () {
-                        var group = parseInt(d.Age / 5);
-                        var x = (group ) * interval_width;
+                       var group = parseInt(d.Age / 5);
+                       var x = (group ) * interval_width;
                         return x;
                     })
                     .attr("y", function () {
-                        var y = vis.height / 2 - d.No * interval_height;
+                       var y = vis.height / 2 - d.No * interval_height;
                         return y;
                     })
-                    .attr("fill", "grey")
+                    .attr("fill", "black")
                     .attr("display", "block")
+                    .attr("stroke-width", "1px")
                     .attr("font-size", "12px")
                     .text(function () {
                         console.log(d.Name);
@@ -236,7 +311,7 @@ ageVis.prototype.updateVis = function() {
 
             })
             .on("mouseout", function () {
-                vis.mouseovertext1.remove();
+                mouseovertext1.attr("display", "none");
             });
 
 
@@ -261,7 +336,8 @@ ageVis.prototype.updateVis = function() {
             .attr('width', rect_width)
             .attr('height', rect_height)
             .attr("fill", function(d){
-                return "rgb("+0+","+(255-d.Age*3)+", " + (255-d.Age*3) + ")"
+                var color=parseInt((d.Age-10)/10)
+                return orange[color];
             })
             .on("mouseover", function (d, i) {
                 vis.mouseovertext1 = vis.svg.append("text")
@@ -331,7 +407,8 @@ ageVis.prototype.updateVis = function() {
             .attr('width', rect_width)
             .attr('height', rect_height)
             .attr("fill", function(d){
-                return "rgb("+0+","+(255-d.First*3)+", " + (255-d.First*3) + ")"
+                var color=parseInt((d.First-10)/10);
+                return blue[color];
             })
           /*  .on("mouseover", function (d) {
 
@@ -382,7 +459,8 @@ ageVis.prototype.updateVis = function() {
             .attr('width', rect_width)
             .attr('height', rect_height)
             .attr("fill", function(d){
-                return "rgb("+0+","+(255-d.First*3)+", " + (255-d.First*3) + ")"
+                var color=parseInt((d.First-10)/10);
+                return orange[color];
             });
 
         rectActress.exit().remove();

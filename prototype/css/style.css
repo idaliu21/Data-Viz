@@ -17,6 +17,75 @@ h3{
   text-align: center;
 }
 
+
+.white_text{
+    color:white;
+}
+.slidetext{
+    text-align: left;
+    padding-left: 500px;
+}
+
+#barcontainer
+{
+    width: 65%;
+    padding-left: 500px;
+    padding-top: 120px;
+}
+
+#bar
+{
+    width:20%;
+    height:15px;
+    fill:#C5DBF5;
+    rx:4px;
+    ry:4px;
+    opacity: 0.9;
+    outline: none;
+
+}
+
+#slidecontainer {
+    width: 65%;
+    padding-left: 500px;
+    padding-top: 50px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #FFDDD0;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:  #FF804F;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:  #FF804F;
+    cursor: pointer;
+}
+
+
 .place-holder{
 
   display: block;
@@ -29,9 +98,32 @@ h3{
 }
 
 .banner{
-  background-color:lightgrey;
-  height: 500px;
+    background-color:lightgrey;
+    height: 700px;
+    background-image: url("images/actor_and_actress.jpg");
+
 }
+
+#bannerbutton
+{
+    margin-top: 150px;
+}
+
+
+.gender-composition{
+    background-color:white;
+    height: 500px;
+}
+
+
+.salary{
+    background-color:lightgrey;
+}
+
+.buttonBest{
+    padding-top: 50px;
+}
+
 
 /*******************************
 gender-composition
