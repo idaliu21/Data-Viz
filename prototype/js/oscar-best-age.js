@@ -134,7 +134,7 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
 
 
     vis.margin = {top: 100, right: 10, bottom: 350, left: 50};
-    vis.width = 1000 - vis.margin.left - vis.margin.right;
+    vis.width = 1200 - vis.margin.left - vis.margin.right;
     vis.height = 1000 - vis.margin.top - vis.margin.bottom;
 
 
@@ -145,325 +145,363 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-
-    vis.updateVis();
-   // vis.updateVis();
-
-    vis.svg.selectAll(".Legend1")
-        .data(orange)
-        .enter()
-        .append('rect')
-        .attr("class", "Legend1")
-        .attr("x",0)
-        .attr("y", function(d,i){
-            return i*12-35;
-        })
-        .attr("width",40)
-        .attr("height", 12)
-        .attr("fill", function(d)
-        {
-            return d;
-        });
-
-    vis.svg.selectAll(".Legend2")
-        .data(blue)
-        .enter()
-        .append('rect')
-        .attr("class", "Legend1")
-        .attr("x",0)
-        .attr("y", function(d,i){
-            return i*12-35+150;
-        })
-        .attr("width",40)
-        .attr("height", 12)
-        .attr("fill", function(d)
-        {
-            return d;
-        });
-
-
-    vis.svg.append('text')
-        .attr("class", "LegendLabel")
-        .attr("x",0)
-        .attr("y",-40)
-        .attr("fill", "#4A4A4A ")
-        .text("Age Distribution");
-
-
-
-    vis.svg.selectAll(".LegendText1")
-        .data(orange)
-        .enter()
-        .append('text')
-        .attr("class", "LegendText1")
-        .attr("x",45)
-        .attr("y", function(d,i){
-            return i*12-35+12;
-        })
-        .attr("fill", "#4A4A4A ")
-        .attr("font-size", "11px")
-        .text(function(d,i){
-            return parseInt((i+1)*10)+" - "+parseInt((i+2)*10);
-        })
-
-    vis.svg.selectAll(".LegendText2")
-        .data(orange)
-        .enter()
-        .append('text')
-        .attr("class", "LegendText2")
-        .attr("x",45)
-        .attr("y", function(d,i){
-            return i*12-35+12+150;
-        })
-        .attr("fill", "#4A4A4A ")
-        .attr("font-size", "11px")
-        .text(function(d,i){
-            return parseInt((i+1)*10)+" - "+parseInt((i+2)*10);
-        })
+    vis. createVis();
 
 
 
 }
+
+ageVis.prototype.createVis=function(){
+    var vis = this;
+
+
+    var rect_width=23;
+    var rect_height=30;
+    //the distance between rects
+    var interval_width=25;
+    var interval_height=40;
+    var rectActor,rectActress;
+    var mouseovertext1;
+
+
+    var temp_Data=[];
+    for(var i=0;i<vis.actorData.length;i++)
+    {
+        temp_Data[i]=vis.actorData[i];
+
+    }
+    var actor_number=vis.actorData.length;
+
+    for(var j=0;j<vis.actressData.length;j++)
+    {
+        temp_Data[vis.actorData.length+j]=vis.actressData[j];
+    }
+    for(i=5;i<18;i++)
+    {
+        vis.label1=vis.svg.append("text")
+            .attr("x", vis.width*0.75)
+            .attr("y", i*interval_height-22)
+            .text(i*5+" to "+(i+1)*5);
+        vis.label1.exit().remove();
+
+
+    }
+
+   var bars= vis.svg.selectAll('rect')
+        .data(temp_Data);
+
+       bars.enter()
+        .append('rect')
+       .attr("class", "rectActor")
+        //.merge(rectActor)
+        .attr('x', function (d,i) {
+            if(i<actor_number)
+            {
+                var x = vis.width*0.75 - d.No * interval_width;
+                return x;
+            }
+            else
+            {
+                var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                return x;
+            }
+
+        })
+        .attr('y', function (d,i) {
+            var group = parseInt(d.Age / 5);
+            var y = (group ) * interval_height;
+            return y;
+        })
+        .attr('width', rect_width)
+        .attr('height', rect_height)
+        .attr("fill", function(d,i){
+            if(i<actor_number)
+            {
+                var color=parseInt((d.Age-10)/10)
+                return blue[color];
+            }
+            else
+            {
+                var color=parseInt((d.Age-10)/10)
+                return orange[color];
+            }
+        })
+        .on("mouseover", function (d,i) {
+            d3.select(this)
+                .attr('width', rect_width-3)
+                .attr('height', rect_height-3)
+                .attr('x', function () {
+                    if(i<actor_number)
+                    {
+                        var x = vis.width*0.75 - d.No * interval_width;
+                        return x+1.5;
+                    }
+                    else
+                    {
+                        var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                        return x+1.5;
+                    }
+
+                })
+                .attr('y', function () {
+                    var group = parseInt(d.Age / 5);
+                    var y = (group ) * interval_height;
+                    return y+1.5;
+                })
+                .attr("fill", function(){
+                    if(i<actor_number)
+                    {
+                        return "blue";
+                    }
+                    else
+                    {
+                        return "orange";
+                    }
+                });
+
+        })
+        .on("mouseout", function(d,i){
+               d3.select(this)
+                   .attr('width', rect_width)
+                   .attr('height', rect_height)
+                   .attr('x', function () {
+                       if(i<actor_number)
+                       {
+                           var x = vis.width*0.75 - d.No * interval_width;
+                           return x;
+                       }
+                       else
+                       {
+                           var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                           return x;
+                       }
+
+                   })
+                   .attr('y', function () {
+                       var group = parseInt(d.Age / 5);
+                       var y = (group ) * interval_height;
+                       return y;
+                   })
+                   .attr("fill", function(){
+                       if(i<actor_number)
+                       {
+                           var color=parseInt((d.Age-10)/10)
+                           return blue[color];
+                       }
+                       else
+                       {
+                           var color=parseInt((d.Age-10)/10)
+                           return orange[color];
+                       }
+                   });
+           });
+
+
+    vis.g = vis.svg.append("g")
+        .attr("class", "tooltip") ;
+};
+
 
 
 ageVis.prototype.updateVis = function() {
     var vis = this;
 
 
-    var rect_width=50;
-    var rect_height=33;
+    var rect_width=23;
+    var rect_height=30;
     //the distance between rects
-    var interval_width=60;
-    var interval_height=35;
+    var interval_width=25;
+    var interval_height=40;
     var rectActor,rectActress;
     var mouseovertext1;
 
 
+    var temp_Data=[];
+    for(var i=0;i<vis.actorData.length;i++)
+    {
+        temp_Data[i]=vis.actorData[i];
+
+    }
+    var actor_number=vis.actorData.length;
+
+    for(var j=0;j<vis.actressData.length;j++)
+    {
+        temp_Data[vis.actorData.length+j]=vis.actressData[j];
+    }
+
+    console.log(temp_Data);
+
 
     //draw rects
-    rectActor = vis.svg.selectAll('.rectActor')
+/*    rectActor = vis.svg.selectAll('.rectActor')
         .data(vis.actorData);
     console.log(vis.actorData);
 
 
     rectActress = vis.svg.selectAll('.rectActress')
-        .data(vis.actressData);
+        .data(vis.actressData);*/
 
-    vis.g = vis.svg.append("g")
-        .attr("class", "tooltip") ;
+
 
 
 
     if(vis.button==0) {
 
-        for(i=4;i<18;i++)
+        for(i=5;i<18;i++)
         {
             vis.label1=vis.svg.append("text")
-                .attr("x", i*interval_width)
-                .attr("y", vis.height / 2+25)
+                .attr("x", vis.width *0.75)
+                .attr("y", i*interval_height-22)
                 .text(i*5+" to "+(i+1)*5);
             vis.label1.exit().remove();
 
 
         }
+        var bars =  vis.svg.selectAll('rect')
+            .data(temp_Data);
 
-        rectActor
-            .enter()
+        bars.enter()
             .append('rect')
+            .merge(bars)							//Merges the enter selection with the update selection
+            .transition()							//Initiate a transition on all elements in the update selection (all rects)
+            .duration(1000)
             .attr("class", "rectActor")
-            .merge(rectActor)
-            .attr('x', function (d) {
-                var group = parseInt(d.Age / 5);
-                var x = (group ) * interval_width;
-                return x;
-            })
-            .attr('y', function (d) {
-                var y = vis.height / 2 - d.No * interval_height;
-                return y;
-            })
             .attr('width', rect_width)
-            .attr('height', rect_height)
-            .attr("fill", function(d){
+            .attr('height', rect_height);
+
+           bars  .attr('x', function (d,i) {
+                if(i<actor_number)
+                {
+                    var x = vis.width*0.75 - d.No * interval_width;
+                    return x;
+                }
+                else
+                {
+                    var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                    return x;
+                }
+
+            })
+            .attr('y', function (d,i) {
+                    var group = parseInt(d.Age / 5);
+                    var y = (group ) * interval_height;
+                    return y;
+            })
+
+            .attr("fill", function(d,i){
+                if(i<actor_number)
+                {
                 var color=parseInt((d.Age-10)/10)
                 return blue[color];
+                }
+                else
+                {
+                    var color=parseInt((d.Age-10)/10)
+                    return orange[color];
+                }
             })
             .on("mouseover", function (d) {
 
-                mouseovertext1 = vis.g.append("text")
-                    .attr("class", "tooltip")
-                    .attr("x", function () {
-                       var group = parseInt(d.Age / 5);
-                       var x = (group ) * interval_width;
-                        return x;
-                    })
-                    .attr("y", function () {
-                       var y = vis.height / 2 - d.No * interval_height;
-                        return y;
-                    })
-                    .attr("fill", "black")
-                    .attr("display", "block")
-                    .attr("stroke-width", "1px")
-                    .attr("font-size", "12px")
-                    .text(function () {
-                        console.log(d.Name);
-                        return ("Name: " + d.Name + "\ Age: " + d.Age);
-                    });
-
             })
             .on("mouseout", function () {
-                mouseovertext1.attr("display", "none");
+
             });
 
 
-        rectActor.exit().remove();
-
-
-        rectActress
-            .enter()
-            .append('rect')
-            // .attr("clip-path", "url(#clipPath)")
-            .attr("class", "rectActress")
-            .merge(rectActress)
-            .attr('x', function (d) {
-                var group = parseInt(d.Age / 5);
-                var x = (group ) * interval_width;
-                return x;
-            })
-            .attr('y', function (d) {
-                var y = vis.height / 2 + (d.No-1) * interval_height+40;
-                return y;
-            })
-            .attr('width', rect_width)
-            .attr('height', rect_height)
-            .attr("fill", function(d){
-                var color=parseInt((d.Age-10)/10)
-                return orange[color];
-            })
-            .on("mouseover", function (d, i) {
-                vis.mouseovertext1 = vis.svg.append("text")
-                    .attr("class", "tooltip")
-                    .attr("x", function () {
-                        var group = parseInt(d.Age / 5);
-                        var x = (group) * interval_width;
-                        return x;
-                    })
-                    .attr("y", function () {
-                        var y = vis.height / 2 +d.No * interval_height+20;
-                        return y;
-                    })
-                    .attr("font-family", "sans-serif")
-                    .attr("fill", "grey")
-                    .attr("display", "block")
-                    .attr("font-size", "12px")
-                    .text(function () {
-                        return ("Name: " + d.Name + "\ Age: " + d.Age);
-                    });
-
-            })
-            .on("mouseout", function () {
-                vis.mouseovertext1.remove();
-            });
-
-        rectActress.exit().remove();
+        bars.exit()
+            .transition()		//Initiates a transition on the one element we're deleting
+            .duration(500)
+            .remove();
 
     }
 
 
-    if(vis.button==1)
-    {
-
-        for(i=1;i<18;i++)
-        {
-            vis.label1=vis.svg.append("text")
-                .attr("x", i*interval_width)
-                .attr("y", vis.height / 2+25)
-                .text(i+" to "+(i+1));
-            vis.label1.exit().remove();
+      if(vis.button==1)
+      {
 
 
-        }
+          for(i=2;i<19;i++)
+          {
+              vis.label1=vis.svg
+                  .append("text")
+                  .attr("x", vis.width*0.75)
+                  .attr("y", i*interval_height-22)
+                  .text(i*5+" to "+(i+1)*5);
+              vis.label1.exit().remove();
+          }
 
-        rect_width=50;
-        rect_height=8;
-        //the distance between rects
-        interval_width=60;
-        interval_height=10;
-        var i=0;
+          rect_width=8;
+          rect_height=30;
+          //the distance between rects
+          interval_width=10;
+          interval_height=40;
+          var i=0;
+          var bars =  vis.svg.selectAll('rect')
+              .data(temp_Data);
+
+         bars.enter()
+             .append('rect')
+             .attr("class", "rectActor")
+             .merge(bars)							//Merges the enter selection with the update selection
+             .transition()							//Initiate a transition on all elements in the update selection (all rects)
+             .duration(1000)
+             .attr('width', rect_width)
+             .attr('height', rect_height)
+             .attr('x', function (d,i) {
+                  var x;
+                  if(i<actor_number) {
+                      x = vis.width*0.75 - d.No * interval_width;
+                      return x;
+                  }
+                  else
+                  {
+                      x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                      return x;
+                  }
+              })
+              .attr('y', function (d) {
+                      var group = parseInt(d.First / 5);
+                      var y = (group ) * interval_height;
+                      return y;
+              })
+
+              .attr("fill", function(d,i){
+                  if(i<actor_number)
+                  {
+                      var color=parseInt((d.First-10)/10);
+                      return blue[color];
+                  }
+                  else
+                  {
+                      var color=parseInt((d.First-10)/10);
+                      return orange[color];
+                  }
+              });
+
+         bars.on("mouseover", function (d,i) {
+                 d3.select(this)
+                     .attr("fill", "blue");
+             })
+             .on("mouseout", function(d,i) {
+                 d3.select(this)
+                     .attr("fill", function () {
+                         if (i < actor_number) {
+                             var color = parseInt((d.Age - 10) / 10);
+                             return blue[color];
+                         }
+                         else {
+                             var color = parseInt((d.Age - 10) / 10);
+                             return orange[color];
+                         }
+                     })
+             });
 
 
-        rectActor
-            .enter()
-            .append('rect')
-            .merge(rectActor)
-            .attr('x', function (d) {
-                var group = parseInt(d.First / 5);
-                var x = (group ) * interval_width;
-                return x;
-            })
-            .attr('y', function (d) {
-                var y = vis.height / 2 - d.No * interval_height;
-                return y;
-            })
-            .attr('width', rect_width)
-            .attr('height', rect_height)
-            .attr("fill", function(d){
-                var color=parseInt((d.First-10)/10);
-                return blue[color];
-            })
-          /*  .on("mouseover", function (d) {
+       bars.exit()
+           .transition()		//Initiates a transition on the one element we're deleting
+           .duration(500)
+           .remove();
 
-                vis.mouseovertext1 = vis.svg.append("text")
-                    .attr("class", "tooltip")
-                    .attr("x", function () {
-                        var group = parseInt(d.Age / 5);
-                        var x = (group - 1) * interval_width;
-                        return x;
-                    })
-                    .attr("y", function () {
-                        var y = vis.height / 2 - d.No * interval_height;
-                        return y;
-                    })
-                    .attr("fill", "grey")
-                    .attr("display", "block")
-                    .attr("font-size", "12px")
-                    .text(function () {
-                        console.log(d.Name);
-                        return ("Name: " + d.Name + "\ Age: " + d.Age);
-                    });
-
-            })
-            .on("mouseout", function () {
-                vis.mouseovertext1.remove();
-            })
-            */
-            ;
-        rectActor.exit().remove();
-
-
-
-
-        rectActress
-            .enter()
-            .append('rect')
-            .merge(rectActress)
-            .attr('x', function (d) {
-                console.log("11");
-                var group = parseInt(d.First / 5);
-                var x = (group ) * interval_width;
-                return x;
-            })
-            .attr('y', function (d) {
-                var y = vis.height / 2 + (d.No-1) * interval_height+40;
-                return y;
-            })
-            .attr('width', rect_width)
-            .attr('height', rect_height)
-            .attr("fill", function(d){
-                var color=parseInt((d.First-10)/10);
-                return orange[color];
-            });
-
-        rectActress.exit().remove();
 
     }
 
