@@ -1,0 +1,307 @@
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+h1{
+  margin:auto;
+  padding-top: 40px;
+}
+
+h3{
+  margin:auto;
+  padding-top: 40px;
+  font-family: inherit;
+  text-align: center;
+}
+
+
+.white_text{
+    color:white;
+}
+.slidetext{
+    text-align: left;
+    padding-left: 500px;
+}
+
+#barcontainer
+
+    width: 65%;
+    padding-left: 500px;
+    padding-top: 120px;
+}
+
+#bar
+{
+    width:20%;
+    height:15px;
+    fill:#C5DBF5;
+    rx:4px;
+    ry:4px;
+    opacity: 0.9;
+    outline: none;
+
+}
+
+#slidecontainer {
+    width: 65%;
+    padding-left: 500px;
+    padding-top: 50px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #FFDDD0;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:  #FF804F;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:  #FF804F;
+    cursor: pointer;
+}
+
+
+.place-holder{
+
+  display: block;
+  margin:auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 150px;
+  width: 800px;
+  background-color: grey;
+}
+
+.banner{
+    background-color:lightgrey;
+    height: 700px;
+    background-image: url("images/actor_and_actress.jpg");
+
+}
+
+#bannerbutton
+{
+    margin-top: 150px;
+}
+
+
+.gender-composition{
+    background-color:white;
+    height: 500px;
+}
+
+
+.salary{
+    background-color:lightgrey;
+}
+
+.buttonBest{
+    padding-top: 50px;
+}
+
+
+/*******************************
+gender-composition
+********************************/
+
+.gender-composition{
+  background-color:white;
+
+}
+
+.female-icon{
+  width: 10%
+}
+.male-icon{
+  width: 10%
+}
+
+
+/*******************************
+salary
+********************************/
+
+.salary{
+    background-color:black;
+    color:white;
+}
+.axis line{
+    stroke: white;
+}
+
+.axis path{
+    stroke: white;
+}
+
+.axis text{
+    fill: white;
+}
+
+#paycheck-background{
+  width: 100%
+}
+
+.salary-guess-box {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.salary-guess-top{
+    position:absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.salary-guess-left{
+    position:absolute;
+    top:70%;
+    left:25%;
+    transform: translate(-50%, -50%);
+}
+
+.salary-guess-right{
+    position:absolute;
+    top:70%;
+    left:75%;
+    transform: translate(-50%, -50%);
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/pic/paycheck.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.picrow{
+  margin-top: 20px;
+}
+
+.guess-img{
+  width: 80%;
+}
+.salary-btn{
+    background-color: none;
+}
+/*******************************
+salary wall
+********************************/
+
+.wall {
+  position: relative;
+}
+
+.picwall {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guess-text{
+  position:absolute;
+}
+
+
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  overflow: hidden;
+  width: 85%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.wall:hover .overlay {
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+
+
+.film-data{
+  background-color:white;
+  height: 2000px;
+}
+
+.nudity{
+  height: 1200px;
+}
+
+.young-face{
+  background-color:white;
+  height: 1000px;
+}
+
+
+/*******************************
+disney
+********************************/
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+/*******************************
+nudity
+********************************/
+
+.nudity{
+  background-image:url("../pic/nudity1.jpg");
+}
+
+.head_white{
+  color: white;
+  font-size: 40px;
+}
