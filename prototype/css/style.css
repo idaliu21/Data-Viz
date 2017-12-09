@@ -204,8 +204,10 @@ salary
 .guess-img{
   width: 80%;
 }
+
 .salary-btn{
-    background-color: none;
+    background-color: transparent;
+    stroke:white;
 }
 /*******************************
 salary wall
@@ -229,21 +231,24 @@ salary wall
   position:absolute;
 }
 
-
-
 .overlay {
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.6);
-  overflow: hidden;
-  width: 85%;
-  height: 0;
-  transition: .5s ease;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+
+    height: 100%;
+    width: 85%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0.7);
 }
 
 .wall:hover .overlay {
-  height: 100%;
+    opacity: 1;
 }
+
+
 
 .text {
   white-space: nowrap;
