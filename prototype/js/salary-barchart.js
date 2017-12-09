@@ -20,6 +20,45 @@ document.getElementById("guess2").onclick = function(){
     }
 }
 
+function revealMaleNum(){
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("male-num", 0, 20493, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    }
+}
+function revealFemaleNum(){
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("female-num", 0, 15775, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    }
+}
+/*
+https://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
+ */
+var firstTime=true;
+function testScroll(ev){
+    console.log("humm"+document.documentElement.scrollTop);
+    if(document.documentElement.scrollTop>800 && firstTime){
+
+        revealMaleNum();
+        revealFemaleNum();
+        firstTime=false;
+    };
+}
+window.onscroll=testScroll;
+
 
 
 
