@@ -8,7 +8,6 @@
 
   <!-- Load Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/leaflet.css" />
@@ -16,19 +15,18 @@
 <body>
 <!-- Load Google Font -->
 <div class="banner">
-  <h1 class="white_text">Gender Inequity Among Actors</h1>
-  <h3 class="white_text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
+  <h3 class="white-text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
   <p id="barcontainer" >
     <svg width="1000" height="15"> <rect id="bar"> </rect></svg>
   </p>
-  <p class="white_text slidetext">
+  <p class="white-text slidetext">
     Male Average Salary: 52,249 dollars/Per Year
   </p>
   <p id="slidecontainer">
     <input class="slider" type="range" min="20,000" max="90,000" step="1" value="0" orient="horizontal">
   </p>
   <p>Value: <span id="demo"></span></p>
-  <p class="white_text slidetext">
+  <p class="white-text slidetext">
     Please use the slider to guess the average salary of an actress per year.
   </p>
   <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
@@ -36,17 +34,21 @@
 </div>
 
 <!-- Gender Composition -->
-  <div class="gender-composition">
-    <h3>Gender Composition</h3>
-
-    <div class="container">
-      <div class="col-lg-6" id="male-comp">
-
+  <div class="gender-composition block">
+    <h3>Gender Inequity among Actors</h3>
+    <p class="center-p">The gender inequity has been existed in film industry since a long time ago. However, It is still shocking when we discover that gender inequity plays out at different aspects of the film industry, where behind-the-scenes and on screen inequality runs rampant.</p>
+    <p class="center-p">Let’s decode this piece by piece, starting from the population. </p>
+    <div class="blank-box"></div>
+    <h3>There are 30% More Males in the Industry in the US</h3>
+    <div class="container comp-container">
+      <div class="col-lg-6">
+        <h4 class="right-text">20493 Actors</h4>
       </div>
-      <div class="col-lg-6" id="female-comp">
-        <img class="female-icon" src="icons/female.svg" alt="Kiwi standing on oval">
-        <img class="female-icon" src="icons/female.svg" alt="Kiwi standing on oval">
+      <div class="col-lg-6">
+        <h4 class="left-text">15775 Actress</h4>
       </div>
+      <div class="col-lg-6" id="male-comp"></div>
+      <div class="col-lg-6" id="female-comp"></div>
     </div>
 
   </div>
@@ -54,18 +56,18 @@
 <!-- Salaries -->
   <div class="salary">
 
-    <div class="salary-guess-box">
-      <h3 class="salary-guess-top">Highest Paycheck for Actors and Actress</h3>
+    <div class="salary-guess-box white-text">
+      <h3 class="salary-guess-top">？Guess Who Get ？<br>the Highest Paycheck</h3>
       <div class="salary-guess-left">
-        <p>Robert Downey Jr get the</p>
-        <h4>75 million</h4>
-        <p>paycheck in “Iron Man”</p>
+        <h4 class="zero-padding">Robert Downey Jr get the</h4>
+        <h1 class="zero-padding">75 million</h1>
+        <h4 class="zero-padding">paycheck in “Iron Man”</h4>
       </div>
       <div class="salary-guess-right">
-        <p>Angelina Jolie get the</p>
+        <h4 class="zero-padding">Angelina Jolie get the</h4>
         <input type="text" class="form-control same-line" id="formGroupExampleInput" >
-        <h4 class="same-line">million</h4>
-        <p>paycheck in “Maleficent”</p>
+        <h1 class="same-line zero-padding">million</h1>
+        <h4 class="zero-padding">paycheck in “Maleficent”</h4>
         <button type="button" class="btn btn-primary" id="guess2">Guess</button>
       </div>
 
