@@ -360,6 +360,7 @@ salary wall
     color: black;
     background-color: white;
     border:none;
+    outline: none;
 }
 
 .film-data{
