@@ -15,7 +15,8 @@ document.getElementById("guess2").onclick = function(){
     if (!demo.error) {
         demo.start();
     } else {
-        console.error(demo.error);
+        demo = new CountUp("formGroupExampleInput", 0, 33, 0, 2.5, options);
+        demo.start();
     }
 }
 
@@ -151,6 +152,8 @@ SalaryVis.prototype.updateVis = function(){
         .append("rect")
         .attr("class","sbars")
         .merge(bars)
+        .transition()
+        .duration(2000)
         .attr("x",function(d){
             return vis.x(d.Name);
         })
@@ -161,7 +164,13 @@ SalaryVis.prototype.updateVis = function(){
             return vis.height-vis.y(d.Paycheck);
         })
         .attr("width",vis.x.bandwidth())
-        .attr("fill", "white");
+        .attr("fill", function(d){
+            if(d.Gender ==="male"){
+                return "#C5DBF5";
+            }else{
+                return "#FFDDD0";
+            }
+        });
 
     bars.exit().remove();
 
@@ -174,6 +183,8 @@ SalaryVis.prototype.updateVis = function(){
         .text(function(d){
             return d.Paycheck;
         })
+        .transition()
+        .duration(2000)
         .attr("class","paycheck")
         .attr("text-anchor", "middle")
         .attr("x",function(d){
@@ -195,10 +206,10 @@ SalaryVis.prototype.updateVis = function(){
             return vis.names[i];
         })
         .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", -vis.x.bandwidth()/2)
+        .attr("dx", 0)
+        .attr("dy", -vis.x.bandwidth()/2+15)
         .attr("transform", function(d) {
-            return "rotate(-90)"
+            return "rotate(-45)"
         });
 
 
