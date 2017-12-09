@@ -333,7 +333,7 @@ salary wall
 .text {
   white-space: nowrap;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   position: absolute;
   overflow: hidden;
   top: 50%;
@@ -342,11 +342,25 @@ salary wall
   -ms-transform: translate(-50%, -50%);
 }
 
+.picwall-text-2{
+    color:#FF804F;
+}
+
 
 .salary-btn{
+    margin: 5px;
+    width: 80px;
+    height:40px;
     background-color: transparent;
     stroke:white;
     border-radius:0;
+}
+
+.salary-btn:hover, .salary-btn:focus, .salary-btn:active, .salary-btn.active, .open>.dropdown-toggle.salary-btn {
+    color: black;
+    background-color: white;
+    border:none;
+    outline: none;
 }
 
 .film-data{
