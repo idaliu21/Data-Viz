@@ -15,7 +15,8 @@ document.getElementById("guess2").onclick = function(){
     if (!demo.error) {
         demo.start();
     } else {
-        console.error(demo.error);
+        demo = new CountUp("formGroupExampleInput", 0, 33, 0, 2.5, options);
+        demo.start();
     }
 }
 
