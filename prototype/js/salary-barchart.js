@@ -3,9 +3,20 @@
 
 
 document.getElementById("guess2").onclick = function(){
+    var startNum = document.getElementById("formGroupExampleInput").value;
 
-    document.getElementById("formGroupExampleInput").value = "33";
-    //document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("formGroupExampleInput", startNum, 33, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    } else {
+        console.error(demo.error);
+    }
 }
 
 
