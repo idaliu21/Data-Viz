@@ -26,15 +26,13 @@ h3{
     padding-left: 500px;
 }
 
-#barcontainer
-
+#barcontainer {
     width: 65%;
     padding-left: 500px;
     padding-top: 120px;
 }
 
-#bar
-{
+#bar {
     width:20%;
     height:15px;
     fill:#C5DBF5;
@@ -101,11 +99,9 @@ h3{
     background-color:lightgrey;
     height: 700px;
     background-image: url("images/actor_and_actress.jpg");
-
 }
 
-#bannerbutton
-{
+#bannerbutton {
     margin-top: 150px;
 }
 
@@ -114,7 +110,6 @@ h3{
     background-color:white;
     height: 500px;
 }
-
 
 .salary{
     background-color:lightgrey;
@@ -181,36 +176,30 @@ salary
 
 .salary-guess-left{
     position:absolute;
-    top:70%;
+    top: 80%;
     left:25%;
     transform: translate(-50%, -50%);
 }
 
 .salary-guess-right{
     position:absolute;
-    top:70%;
+    top:80%;
     left:75%;
     transform: translate(-50%, -50%);
 }
 
-.bg {
-  /* The image used */
-  background-image: url("/pic/paycheck.jpg");
+#formGroupExampleInput {
+    color:white;
+    background-color: transparent;
+    width: 60px;
+}
 
-  /* Full height */
-  height: 100%;
+.same-line{
+    display:inline;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 
-
-.picrow{
-  margin-top: 20px;
-}
 
 .guess-img{
   width: 80%;
@@ -224,6 +213,10 @@ salary wall
 
 .wall {
   position: relative;
+}
+
+.picrow{
+    margin-top: 20px;
 }
 
 .picwall {
