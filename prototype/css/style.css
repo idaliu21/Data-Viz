@@ -26,15 +26,14 @@ h3{
     padding-left: 500px;
 }
 
-#barcontainer
+#barcontainer{
 
     width: 65%;
     padding-left: 500px;
     padding-top: 120px;
 }
 
-#bar
-{
+#bar{
     width:20%;
     height:15px;
     fill:#C5DBF5;
