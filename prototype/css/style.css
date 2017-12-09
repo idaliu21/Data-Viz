@@ -29,6 +29,7 @@ h4{
 
 
 p{
+    margin:auto;
     padding:10px;
 }
 
@@ -57,6 +58,7 @@ p{
 .white-text{
     color:white;
 }
+
 
 .btn{
     border-radius:0;
@@ -206,6 +208,18 @@ gender-composition
     width: 10%
 }
 
+#male-num{
+    color:dodgerblue;
+    padding:10px;
+    padding-top:0;
+}
+
+#female-num{
+    color:#FF804F;
+    padding:10px;
+    padding-top: 0;
+}
+
 
 /*******************************
 salary
@@ -275,7 +289,7 @@ salary
 }
 
 .same-line{
-    display:inline;
+    display:inline-block;
 
 }
 
