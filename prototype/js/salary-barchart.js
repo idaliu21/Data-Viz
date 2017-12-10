@@ -62,7 +62,7 @@ SalaryVis = function(_parentElement, _data1, _data2){
     this.data = _data1;
 
     this.initVis();
-}
+};
 
 
 

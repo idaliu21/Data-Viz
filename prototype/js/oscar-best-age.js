@@ -23,7 +23,7 @@ function createVis(error, Data1,Data2,Data3,Data4 ) {
 
 
 }
-
+var label=[];
 
 var changeToNumber = function(data){
 
@@ -39,6 +39,23 @@ var changeToNumber = function(data){
 
 
     });
+
+    var j=0,q=0;
+    for(var i=0;i<data.length;i++)
+    {
+
+        if(j!=parseInt(data[i].Age/5))
+        {
+            q=1;
+            data[i].No=q;
+            j=parseInt(data[i].Age/5);
+        }
+        else
+        {
+            q++;
+            data[i].No=q;
+        }
+    }
 
 
 };
@@ -68,21 +85,17 @@ var changeToNumber1= function(data){
 
 
     data.sort(function(a,b){return a.First-b.First;});
-    data.forEach(function(element,i){
-        if (element.First>100)
-            console.log(element.First+"aaa  "+element.Last+" aa "+i);
-    });
 
 
     var j=0,q=0;
     for(var i=0;i<data.length;i++)
     {
 
-       if(j!=data[i].First)
+       if(j!=parseInt(data[i].First/5))
        {
            q=1;
            data[i].No=q;
-           j=data[i].First;
+           j=parseInt(data[i].First/5);
        }
        else
        {
@@ -114,9 +127,15 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
 
     vis.actorData=vis.BestActorData;
     vis.actressData=vis.BestActressData;
+    console.log("best Actor");
+    console.log(vis.BestActorData);
+    console.log("best Actress");
+    console.log(vis.BestActressData);
+
 
 
     vis.button=0;
+    vis.button1=0;
     document.getElementById("Best").onclick = function(){
         vis.button=0;
         vis.actorData=vis.BestActorData;
@@ -132,9 +151,14 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
         vis.updateVis();
     };
 
+    document.getElementById("Compare").onclick=function(){
 
-    vis.margin = {top: 100, right: 10, bottom: 350, left: 50};
-    vis.width = 1200 - vis.margin.left - vis.margin.right;
+          vis.updateVis1();
+    };
+
+
+    vis.margin = {top: 0, right: 10, bottom: 350, left: 0};
+    vis.width = 1000 - vis.margin.left - vis.margin.right;
     vis.height = 1000 - vis.margin.top - vis.margin.bottom;
 
 
@@ -152,13 +176,72 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
 }
 
 ageVis.prototype.createVis=function(){
+
+    //create description
+    var img= document.createElement("IMG");
+    img.setAttribute("id", "starImage");
+    img.setAttribute("src", "pic/paycheck.jpg");
+    img.setAttribute("width", "304");
+    img.setAttribute("height", "228");
+    document.getElementById("oscar-description").appendChild(img);
+
+
+    var tableText = document.createElement("TABLE");
+    tableText.setAttribute("id", "myTable");
+    document.getElementById("oscar-description").appendChild(tableText);
+
+
+
+//name
+    var tableName = document.createElement("TR");
+    tableName.setAttribute("id", "Name");
+    document.getElementById("myTable").appendChild(tableName);
+
+    var t = document.createTextNode("Adrien Brody");
+    tableName.appendChild(t);
+
+
+
+//birthday
+    var tableBirthday = document.createElement("TR");
+    tableBirthday.setAttribute("id", "Birthday");
+    document.getElementById("myTable").appendChild(tableBirthday);
+
+    var p = document.createTextNode("Born on: Feb 2th, 1987");
+    tableBirthday.appendChild(p);
+
+
+    //Age
+    var tableAge = document.createElement("TR");
+    tableAge.setAttribute("id", "Birthday");
+    document.getElementById("myTable").appendChild(tableAge);
+
+    var q = document.createTextNode("Age of 29 when win the academy award");
+    tableAge.appendChild(q);
+
+
+
+
+//movie
+    var tableMovie = document.createElement("TR");
+    tableMovie.setAttribute("id", "Movie");
+    document.getElementById("myTable").appendChild(tableMovie);
+
+    var r = document.createTextNode("Award-Winning Film: The Pianist");
+    tableMovie.appendChild(r);
+
+
+
+
+
+    //create data vis
     var vis = this;
 
 
-    var rect_width=23;
+    var rect_width=13;
     var rect_height=30;
     //the distance between rects
-    var interval_width=25;
+    var interval_width=15;
     var interval_height=40;
     var rectActor,rectActress;
     var mouseovertext1;
@@ -176,33 +259,48 @@ ageVis.prototype.createVis=function(){
     {
         temp_Data[vis.actorData.length+j]=vis.actressData[j];
     }
+
+
+    var j=0;
     for(i=5;i<18;i++)
     {
-        vis.label1=vis.svg.append("text")
-            .attr("x", vis.width*0.75)
-            .attr("y", i*interval_height-22)
-            .text(i*5+" to "+(i+1)*5);
-        vis.label1.exit().remove();
+        label[j]={key: j, value: i };
+        j++;
+    };
+
+    console.log(label);
+
+    vis.label1=vis.svg.selectAll(".label")
+        .data(label,function(d) {
+            return d.key;
+        })
+        .enter()
+        .append("text")
+        .attr("class","label")
+        .text(function(d) {
+            return (d.value*5+" to "+(d.value+1)*5);
+        })
+        .attr("x", vis.width*0.5)
+        .attr("y",function(d,i)
+        {
+            return d.value*interval_height-22;});
 
 
-    }
-
-   var bars= vis.svg.selectAll('rect')
-        .data(temp_Data);
-
-       bars.enter()
+   var bars= vis.svg.selectAll('.rectActor')
+        .data(temp_Data)
+        .enter()
         .append('rect')
-       .attr("class", "rectActor")
+           .attr("class", "rectActor")
         //.merge(rectActor)
         .attr('x', function (d,i) {
             if(i<actor_number)
             {
-                var x = vis.width*0.75 - d.No * interval_width;
+                var x = vis.width*0.5 - d.No * interval_width;
                 return x;
             }
             else
             {
-                var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                var x = vis.width*0.5 + (d.No-1) * interval_width+60;
                 return x;
             }
 
@@ -214,6 +312,16 @@ ageVis.prototype.createVis=function(){
         })
         .attr('width', rect_width)
         .attr('height', rect_height)
+       .attr("opacity", function(d,i){
+        if(i<actor_number)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0.5;
+        }
+    })
         .attr("fill", function(d,i){
             if(i<actor_number)
             {
@@ -227,18 +335,24 @@ ageVis.prototype.createVis=function(){
             }
         })
         .on("mouseover", function (d,i) {
+            if (i>4)
+            {
+                img.setAttribute("src", "pic/nudity.jpg");
+                document.getElementById("Birthday").innerHTML = "Julia";
+
+            }
             d3.select(this)
                 .attr('width', rect_width-3)
                 .attr('height', rect_height-3)
                 .attr('x', function () {
                     if(i<actor_number)
                     {
-                        var x = vis.width*0.75 - d.No * interval_width;
+                        var x = vis.width*0.5 - d.No * interval_width;
                         return x+1.5;
                     }
                     else
                     {
-                        var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                        var x = vis.width*0.5 + (d.No-1) * interval_width+60;
                         return x+1.5;
                     }
 
@@ -259,6 +373,8 @@ ageVis.prototype.createVis=function(){
                     }
                 });
 
+
+
         })
         .on("mouseout", function(d,i){
                d3.select(this)
@@ -267,12 +383,12 @@ ageVis.prototype.createVis=function(){
                    .attr('x', function () {
                        if(i<actor_number)
                        {
-                           var x = vis.width*0.75 - d.No * interval_width;
+                           var x = vis.width*0.5 - d.No * interval_width;
                            return x;
                        }
                        else
                        {
-                           var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                           var x = vis.width*0.5 + (d.No-1) * interval_width+60;
                            return x;
                        }
 
@@ -332,16 +448,6 @@ ageVis.prototype.updateVis = function() {
     console.log(temp_Data);
 
 
-    //draw rects
-/*    rectActor = vis.svg.selectAll('.rectActor')
-        .data(vis.actorData);
-    console.log(vis.actorData);
-
-
-    rectActress = vis.svg.selectAll('.rectActress')
-        .data(vis.actressData);*/
-
-
 
 
 
@@ -349,15 +455,16 @@ ageVis.prototype.updateVis = function() {
 
         for(i=5;i<18;i++)
         {
-            vis.label1=vis.svg.append("text")
-                .attr("x", vis.width *0.75)
+            vis.label1=vis.svg.selectAll(".label1")
+                .append("text")
+                .attr("x", vis.width *0.5)
                 .attr("y", i*interval_height-22)
                 .text(i*5+" to "+(i+1)*5);
             vis.label1.exit().remove();
 
 
         }
-        var bars =  vis.svg.selectAll('rect')
+        var bars =  vis.svg.selectAll('.rectActor')
             .data(temp_Data);
 
         bars.enter()
@@ -372,12 +479,12 @@ ageVis.prototype.updateVis = function() {
            bars  .attr('x', function (d,i) {
                 if(i<actor_number)
                 {
-                    var x = vis.width*0.75 - d.No * interval_width;
+                    var x = vis.width*0.5 - d.No * interval_width;
                     return x;
                 }
                 else
                 {
-                    var x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                    var x = vis.width*0.5 + (d.No-1) * interval_width+60;
                     return x;
                 }
 
@@ -419,16 +526,37 @@ ageVis.prototype.updateVis = function() {
       if(vis.button==1)
       {
 
-
+          var j=0;
           for(i=2;i<19;i++)
           {
-              vis.label1=vis.svg
-                  .append("text")
-                  .attr("x", vis.width*0.75)
-                  .attr("y", i*interval_height-22)
-                  .text(i*5+" to "+(i+1)*5);
-              vis.label1.exit().remove();
+
+                  label[j]={key: j, value: i };
+                  j++;
           }
+              //Select…
+              vis.label1=vis.svg.selectAll(".label")
+                  .data(label,function(d) {
+                      return d.key;});
+
+              //Exit…
+              vis.label1.exit()
+                  .remove();
+
+              //Enter…
+              vis.label1.enter()
+                  .merge(vis.label1)	//Update…
+                  .transition()
+                  .duration(500)
+                  .attr("x", vis.width*0.5)
+                  .attr("y", function(d,i){
+                      console.log("111");
+                      return d.value*interval_height-22;
+                  })
+                  .text(function(d,i){
+                      console.log("222");
+                      return d.value*5+" to "+( d.value+1)*5;});
+
+
 
           rect_width=8;
           rect_height=30;
@@ -436,7 +564,7 @@ ageVis.prototype.updateVis = function() {
           interval_width=10;
           interval_height=40;
           var i=0;
-          var bars =  vis.svg.selectAll('rect')
+          var bars =  vis.svg.selectAll('.rectActor')
               .data(temp_Data);
 
          bars.enter()
@@ -450,12 +578,12 @@ ageVis.prototype.updateVis = function() {
              .attr('x', function (d,i) {
                   var x;
                   if(i<actor_number) {
-                      x = vis.width*0.75 - d.No * interval_width;
+                      x = vis.width*0.5 - d.No * interval_width;
                       return x;
                   }
                   else
                   {
-                      x = vis.width*0.75 + (d.No-1) * interval_width+60;
+                      x = vis.width*0.5 + (d.No-1) * interval_width+60;
                       return x;
                   }
               })
@@ -478,7 +606,14 @@ ageVis.prototype.updateVis = function() {
                   }
               });
 
-         bars.on("mouseover", function (d,i) {
+             bars
+             .on("mouseover", function (d,i) {
+                 if (i>4)
+                 {
+                     var img=document.getElementById("starImage");
+                     img.setAttribute("src", "pic/nudity1.jpg");
+                     document.getElementById("Birthday").innerHTML = "Jupiter";
+                 }
                  d3.select(this)
                      .attr("fill", "blue");
              })
@@ -486,11 +621,12 @@ ageVis.prototype.updateVis = function() {
                  d3.select(this)
                      .attr("fill", function () {
                          if (i < actor_number) {
-                             var color = parseInt((d.Age - 10) / 10);
+                             var color = parseInt((d.First - 10) / 10);
+                             console.log(color);
                              return blue[color];
                          }
                          else {
-                             var color = parseInt((d.Age - 10) / 10);
+                             var color = parseInt((d.First - 10) / 10);
                              return orange[color];
                          }
                      })
@@ -505,5 +641,96 @@ ageVis.prototype.updateVis = function() {
 
     }
 
+
+};
+
+
+
+ageVis.prototype.updateVis1 = function() {
+
+
+    var vis = this;
+
+
+    var rect_width=13;
+    var rect_height=30;
+    //the distance between rects
+    var interval_width=15;
+    var interval_height=40;
+    var rectActor,rectActress;
+    var mouseovertext1;
+
+
+    var temp_Data=[];
+    for(var i=0;i<vis.actorData.length;i++)
+    {
+        temp_Data[i]=vis.actorData[i];
+
+    }
+    var actor_number=vis.actorData.length;
+
+    for(var j=0;j<vis.actressData.length;j++)
+    {
+        temp_Data[vis.actorData.length+j]=vis.actressData[j];
+    }
+
+
+
+
+if (vis.button==0)
+{
+    var bars =  vis.svg.selectAll('.rectActor')
+        .data(temp_Data)
+        .transition()
+        .delay(function(d, i) {
+            return i * 100;
+        })//Initiate a transition on all elements in the update selection (all rects)
+        .duration(1000)
+        .attr("class", "rectActor")
+        .attr('width', rect_width)
+        .attr('height', rect_height);
+
+    bars .attr('x', function (d,i) {
+
+            var x = vis.width*0.5 + (d.No-1) * interval_width+60;
+            return x;
+    })
+        .attr('y', function (d,i) {
+            var group = parseInt(d.Age / 5);
+            var y = (group ) * interval_height;
+            return y;
+        })
+
+        .attr("fill", function(d,i){
+            if(i<actor_number)
+            {
+                var color=parseInt((d.Age-10)/10)
+                return blue[color];
+            }
+            else
+            {
+                var color=parseInt((d.Age-10)/10)
+                return orange[color];
+            }
+        });
+
+    vis.svg
+        .append('rect')
+        .attr("class", "explanation")
+        .attr('width', 10)
+        .attr('height', interval_height*3)
+        .attr("x",vis.width*0.5-30)
+        .attr("y",parseInt(40 / 5)* interval_height)
+        .attr("fill",blue[4]);
+
+    bars.exit()
+        .transition()		//Initiates a transition on the one element we're deleting
+        .duration(500)
+        .remove();
+
+
+
+
+}
 
 }

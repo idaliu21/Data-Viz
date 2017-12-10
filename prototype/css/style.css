@@ -26,16 +26,16 @@ h3{
     padding-left: 500px;
 }
 
-#barcontainer
+#barcontainer{
 
-    width: 65%;
+    width: 100%;
     padding-left: 500px;
     padding-top: 120px;
 }
 
 #bar
 {
-    width:20%;
+    width:43%;
     height:15px;
     fill:#C5DBF5;
     rx:4px;
@@ -45,11 +45,18 @@ h3{
 
 }
 
-#slidecontainer {
+#slidetext
+{
+    padding-bottom: 30px;
+}
+
+
+#slidercontainer {
     width: 65%;
     padding-left: 500px;
     padding-top: 50px;
 }
+
 
 .slider {
     -webkit-appearance: none;
@@ -86,6 +93,14 @@ h3{
 }
 
 
+#remind{
+    color: #FF804F;
+    margin-top: 80px;
+    margin-right:300px;
+    height:25px;
+}
+
+
 .place-holder{
 
   display: block;
@@ -106,7 +121,7 @@ h3{
 
 #bannerbutton
 {
-    margin-top: 150px;
+    margin-top: 20px;
 }
 
 
@@ -304,4 +319,23 @@ nudity
 .head_white{
   color: white;
   font-size: 40px;
+}
+
+
+
+
+
+
+/*******************************
+Oscar
+********************************/
+.rectActor{
+    overflow: hidden;
+    top: 0;
+
+}
+.buttonBest{
+    overflow: hidden;
+    top: 0;
+    width: 100%;
 }
