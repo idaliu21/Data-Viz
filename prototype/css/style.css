@@ -1,40 +1,108 @@
 
+/*******************************
+All CONRTOL
+********************************/
 
 body {
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
+    font-family: 'Lucida Grande', sans-serif;
+    text-align: center;
 }
 
 h1{
-  margin:auto;
-  padding-top: 40px;
+    margin:auto;
+    padding: 20px;
 }
 
 h3{
-  margin:auto;
-  padding-top: 40px;
-  font-family: inherit;
-  text-align: center;
+    margin:auto;
+    padding: 20px;
+    text-align: center;
+
+}
+
+h4{
+    font-weight: 300;
+    margin:auto;
+    padding: 20px;
+    text-align: center;
 }
 
 
-.white_text{
+p{
+    margin:auto;
+    padding:10px;
+}
+
+.center-p{
+    margin:auto;
+    width:65%;
+    text-align: left;
+}
+.block{
+    padding-bottom: 100px;
+    padding-top: 70px;
+}
+
+.blank-box{
+    height:30px;
+}
+
+.right-text{
+    text-align: right;
+}
+
+.left-text{
+    text-align: left;
+}
+
+.white-text{
     color:white;
 }
+
+
+.btn{
+    border-radius:0;
+    width:120px;
+    height:40px;
+
+}
+
+.btn-primary{
+    border:none;
+    background-color: black;
+    color:white;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: rgb(100,100,100);
+    border:none;
+}
+
+.btn-secondary{
+    border-width:1px;
+    border-color: white;
+    background-color: transparent;
+    color:white;
+}
+
+/*******************************
+BANNER
+********************************/
+
 .slidetext{
     text-align: left;
     padding-left: 500px;
 }
 
-#barcontainer{
 
+#barcontainer {
     width: 65%;
     padding-left: 500px;
     padding-top: 120px;
 }
 
-#bar
-{
+#bar {
     width:20%;
     height:15px;
     fill:#C5DBF5;
@@ -101,11 +169,9 @@ h3{
     background-color:lightgrey;
     height: 700px;
     background-image: url("images/actor_and_actress.jpg");
-
 }
 
-#bannerbutton
-{
+#bannerbutton {
     margin-top: 150px;
 }
 
@@ -114,7 +180,6 @@ h3{
     background-color:white;
     height: 500px;
 }
-
 
 .salary{
     background-color:lightgrey;
@@ -131,14 +196,29 @@ gender-composition
 
 .gender-composition{
   background-color:white;
+    margin-bottom: 150px;
 
 }
 
 .female-icon{
-  width: 10%
+    float: left;
+    width: 10%
 }
 .male-icon{
-  width: 10%
+    float: right;
+    width: 10%
+}
+
+#male-num{
+    color:dodgerblue;
+    padding:10px;
+    padding-top:0;
+}
+
+#female-num{
+    color:#FF804F;
+    padding:10px;
+    padding-top: 0;
 }
 
 
@@ -172,58 +252,68 @@ salary
   color: white;
 }
 
+.zero-padding{
+    line-height: 150%;
+    margin:0;
+    padding:0;
+}
 .salary-guess-top{
     position:absolute;
-    top:10%;
+    top:30%;
     left:50%;
+    line-height:200%;
     transform: translate(-50%, -50%);
 }
 
 .salary-guess-left{
     position:absolute;
-    top:70%;
+    top: 75%;
     left:25%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 
 .salary-guess-right{
     position:absolute;
-    top:70%;
+    top:75%;
     left:75%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 
-.bg {
-  /* The image used */
-  background-image: url("/pic/paycheck.jpg");
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#formGroupExampleInput {
+    text-align: center;
+    font-size: 40px;
+    border-radius: 0 ;
+    color:white;
+    background-color: transparent;
+    height:46px;
+    width: 100px;
 }
 
+.same-line{
+    display:inline-block;
 
-
-.picrow{
-  margin-top: 20px;
 }
+
+#guess2{
+    margin:10px;
+}
+
 
 .guess-img{
   width: 80%;
 }
-.salary-btn{
-    background-color: none;
-}
+
+
 /*******************************
 salary wall
 ********************************/
 
 .wall {
   position: relative;
+}
+
+.picrow{
+    margin-top: 20px;
 }
 
 .picwall {
@@ -236,26 +326,29 @@ salary wall
   position:absolute;
 }
 
-
-
 .overlay {
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.6);
-  overflow: hidden;
-  width: 85%;
-  height: 0;
-  transition: .5s ease;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+
+    height: 100%;
+    width: 85%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0.7);
 }
 
 .wall:hover .overlay {
-  height: 100%;
+    opacity: 1;
 }
+
+
 
 .text {
   white-space: nowrap;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   position: absolute;
   overflow: hidden;
   top: 50%;
@@ -264,8 +357,26 @@ salary wall
   -ms-transform: translate(-50%, -50%);
 }
 
+.picwall-text-2{
+    color:#FF804F;
+}
 
 
+.salary-btn{
+    margin: 5px;
+    width: 80px;
+    height:40px;
+    background-color: transparent;
+    stroke:white;
+    border-radius:0;
+}
+
+.salary-btn:hover, .salary-btn:focus, .salary-btn:active, .salary-btn.active, .open>.dropdown-toggle.salary-btn {
+    color: black;
+    background-color: white;
+    border:none;
+    outline: none;
+}
 
 .film-data{
   background-color:white;

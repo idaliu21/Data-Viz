@@ -3,10 +3,61 @@
 
 
 document.getElementById("guess2").onclick = function(){
+    var startNum = document.getElementById("formGroupExampleInput").value;
 
-    document.getElementById("formGroupExampleInput").value = "33";
-    //document.getElementById("guess-result2").innerText="well Sandra Bullock only earn XXX "
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("formGroupExampleInput", startNum, 33, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    } else {
+        demo = new CountUp("formGroupExampleInput", 0, 33, 0, 2.5, options);
+        demo.start();
+    }
 }
+
+function revealMaleNum(){
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("male-num", 0, 20493, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    }
+}
+function revealFemaleNum(){
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.'
+    };
+    var demo = new CountUp("female-num", 0, 15775, 0, 2.5, options);
+    if (!demo.error) {
+        demo.start();
+    }
+}
+/*
+https://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
+ */
+var firstTime=true;
+function testScroll(ev){
+    console.log("humm"+document.documentElement.scrollTop);
+    if(document.documentElement.scrollTop>800 && firstTime){
+
+        revealMaleNum();
+        revealFemaleNum();
+        firstTime=false;
+    };
+}
+window.onscroll=testScroll;
 
 
 
@@ -140,6 +191,8 @@ SalaryVis.prototype.updateVis = function(){
         .append("rect")
         .attr("class","sbars")
         .merge(bars)
+        .transition()
+        .duration(2000)
         .attr("x",function(d){
             return vis.x(d.Name);
         })
@@ -150,7 +203,13 @@ SalaryVis.prototype.updateVis = function(){
             return vis.height-vis.y(d.Paycheck);
         })
         .attr("width",vis.x.bandwidth())
-        .attr("fill", "white");
+        .attr("fill", function(d){
+            if(d.Gender ==="male"){
+                return "#C5DBF5";
+            }else{
+                return "#FFDDD0";
+            }
+        });
 
     bars.exit().remove();
 
@@ -163,6 +222,8 @@ SalaryVis.prototype.updateVis = function(){
         .text(function(d){
             return d.Paycheck;
         })
+        .transition()
+        .duration(2000)
         .attr("class","paycheck")
         .attr("text-anchor", "middle")
         .attr("x",function(d){
@@ -184,10 +245,10 @@ SalaryVis.prototype.updateVis = function(){
             return vis.names[i];
         })
         .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", -vis.x.bandwidth()/2)
+        .attr("dx", 0)
+        .attr("dy", -vis.x.bandwidth()/2+15)
         .attr("transform", function(d) {
-            return "rotate(-90)"
+            return "rotate(-45)"
         });
 
 
