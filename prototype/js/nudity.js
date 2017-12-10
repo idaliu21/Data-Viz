@@ -1,6 +1,8 @@
 
 var width_nudity = 300,
     height_nudity = 900;
+var hight =300;
+var hight_per =6;
 
 var svg_reveal = d3.select('#reveal').append("svg")
     .attr("width",500)
@@ -33,10 +35,10 @@ var rev = svg_reveal.selectAll("rect")
     .data(reveal)
     .enter().append("rect")
     .attr("x", function (d,index) {
-        return index*70 + 200;
+        return index* 70 + 200;
     })
     .attr("y", function(d){
-        return 600 - d.data*10;
+        return hight - d.data * hight_per;
     })
     .attr("fill", function (d) {
         if (d.gender == 'female'){return "#FF8A5D"}
@@ -44,39 +46,41 @@ var rev = svg_reveal.selectAll("rect")
     })
     .attr("width", 60)
     .attr("height",function (d) {
-        return d.data*10;
+        return d.data * hight_per;
     });
-//
+
 svg_reveal.selectAll("rect1")
     .data(data_1)
     .enter().append("rect")
     .attr("x", 200)
     .attr("y", function(d,i){
-        return 600 - i * 288/4 ;
+        return hight - i * 172.8/4 ;
     })
-    .attr("fill", "black")
+    .attr("fill", "white")
     .attr("width", 60)
-    .attr("height",3);
-//left text
+    .attr("height",2);
+
+//left text, data
 svg_reveal.selectAll("text")
     .data(reveal)
     .enter()
     .append("text")
     .append("tspan")
     .attr("class", "name1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", function (d,index) {
         return index*90 + 200;
     })
-    .attr("dy", 630)
+    .attr("dy", hight + 20)
     .attr("font-size",20)
     .text(function (d) {
         return d.data + "%" ;
     });
+// female male
 svg_reveal.selectAll("text")
     .append("tspan")
     .attr("class", "name1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", function (d,index) {
         return index*90 + 200;
     })
@@ -85,11 +89,12 @@ svg_reveal.selectAll("text")
     .text(function (d) {
         return d.gender ;
     });
+//labels
 svg_reveal.append("text")
     .attr("class", "label1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", 360)
-    .attr("y", 700)
+    .attr("y", hight+70)
     .attr("font-size",24)
     .style("text-anchor", "end")
     .text("wore sexually revealing clothes");
@@ -104,7 +109,7 @@ svg_naked.selectAll("rect")
         return index*70 + 50;
     })
     .attr("y", function(d){
-        return 600 - d.data*10;
+        return hight - d.data*hight_per;
     })
     .attr("fill", function (d) {
         if (d.gender == 'female'){return "#FF8A5D"}
@@ -112,18 +117,18 @@ svg_naked.selectAll("rect")
     })
     .attr("width", 60)
     .attr("height",function (d) {
-        return d.data*10;
+        return d.data*hight_per;
     });
 svg_naked.selectAll("rect1")
     .data(data_1)
     .enter().append("rect")
     .attr("x", 50)
     .attr("y", function(d,i){
-        return 600 - i * 262/3 ;
+        return hight - i * 157.2/3 ;    //262
     })
-    .attr("fill", "black")
+    .attr("fill", "white")
     .attr("width", 60)
-    .attr("height",3);
+    .attr("height",2);
 //text for middle
 svg_naked.selectAll("text")
     .data(naked)
@@ -131,11 +136,11 @@ svg_naked.selectAll("text")
     .append("text")
     .append("tspan")
     .attr("class", "name1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", function (d,index) {
         return index*90 + 50;
     })
-    .attr("dy", 630)
+    .attr("dy", hight + 20)
     .attr("font-size",20)
     .text(function (d) {
         return d.data + "%"  ;
@@ -143,7 +148,7 @@ svg_naked.selectAll("text")
 svg_naked.selectAll("text")
     .append("tspan")
     .attr("class", "name1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", function (d,index) {
         return index*90 + 50;
     })
@@ -154,14 +159,12 @@ svg_naked.selectAll("text")
     });
 svg_naked.append("text")
     .attr("class", "label1")
-    .attr("fill", "white")
+    .attr("fill", "balck")
     .attr("x", 200)
-    .attr("y", 700)
+    .attr("y", hight+70)
     .attr("font-size",24)
     .style("text-anchor", "end")
     .text("get partially naked");
-
-
 
 
 // /////////////////////////right diagram
@@ -170,38 +173,38 @@ svg_partially.selectAll("rect")
     .enter().append("rect")
     .attr("x", 120)
     .attr("y", function(d,i){
-        return 600 - (i+1)*d *2.5;
+        return hight - (i+1)* d * 1.5;
     })
     .attr("fill", function (d,i) {
         if ( i == 0){return "#FF8A5D"}
-        else {return "#aaa9aa"}
+        else {return "#deddde"}
     })
     .attr("width", 60)
     .attr("height",function (d) {
-        return d*2.5;
+        return d * 1.5;
     });
 svg_partially.append("text")
     .attr("class", "label1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", 180)
-    .attr("y", 630)
+    .attr("y", hight+20)
     .attr("font-size",20)
     .style("text-anchor", "end")
     .text("33.3%");
 svg_partially.append("text")
     .attr("class", "label1")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", 180)
-    .attr("y", 650)
+    .attr("y", hight+40)
     .attr("font-size",20)
     .style("text-anchor", "end")
     .text("female");
 
 svg_partially.append("text")
     .attr("class", "wrapme")
-    .attr("fill", "white")
+    // .attr("fill", "white")
     .attr("x", 230)
-    .attr("y", 700)
+    .attr("y", hight+70)
     .attr("width",200)
     .attr("font-size",24)
     .style("text-anchor", "end")

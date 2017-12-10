@@ -387,7 +387,7 @@ salary wall
 }
 
 .nudity{
-  height: 1200px;
+  height: 900px;
 }
 
 .young-face{
@@ -427,15 +427,26 @@ disney
 .axis1 path{
     stroke: white;
 }
+
 /*******************************
 nudity
 ********************************/
-
+#reveal{
+    /*padding-left:100px;*/
+}
 .nudity{
-  background-image:url("../pic/nudity1.jpg");
+  /*background-image:url("../pic/nudity1.jpg");*/
 }
 
 .head_white{
-  color: white;
-  font-size: 40px;
+  /*color: white;*/
+  /*font-size: 40px;*/
+}
+
+
+.center-icon{
+    padding-left: 500px;
+    padding-top: 100px;
+    text-align: left;
+
 }

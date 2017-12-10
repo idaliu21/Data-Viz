@@ -102,16 +102,6 @@ CountVis.prototype.initVis = function(){
         .attr("y", -8)
         .text("movies");
 
-    // //background-orange rect
-    // vis.svg
-    //     .append("rect")
-    //     .attr("x", 150)
-    //     .attr("y", 100)
-    //     .attr("fill", "#FF8A5D")
-    //     .attr("width", 1200)
-    //     .attr("height", 800);
-
-
     // Append a path for the area function, so that it is later behind the brush overlay
     vis.timePathup = vis.svg.append("path")
         .attr("class", "areaup area-time");
@@ -135,20 +125,6 @@ CountVis.prototype.initVis = function(){
         .y0(vis.height)
         .y1(function(d) { return vis.y( d.maleAve ); });  //d.count
 
-
-
-    // Append brush component here
-    // vis.svg.append("g")
-    //     .attr("class", "brush");
-    // add tool tip for movie names and percentage
-    // vis.tip_disney = d3.tip()
-    //     .attr("class", "d3-tip")
-    //     .attr("font-size",10)
-    //     .offset([100, 200])
-    //     .html(function(d) {
-    //         return d.maleAve;
-    //     });
-    // vis.svg.call(vis.tip_disney);
 
     // (Filter, aggregate, modify data)
     vis.wrangleData();
@@ -192,11 +168,9 @@ CountVis.prototype.updateVis = function(){
         .datum(vis.displayData)
         .attr("d", vis.area);
 
-
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
-
 
     ////////////////////////////////////////////////////////////////
     vis.focus = vis.svg.append("g")
@@ -204,11 +178,10 @@ CountVis.prototype.updateVis = function(){
     // append the x line
     vis.focus.append("line")
         .attr("class", "x")
-        .style("stroke", "blue")
-        .style("stroke-dasharray", "3,3")
-        .style("opacity", 0.5)
-        .attr("y1", 150)
-        .attr("y2", vis.height);
+        .style("stroke", "#30547d")
+        // .style("stroke-dasharray", "8,3")
+        .attr("y1", 100)
+        .attr("y2", vis.height); //vis.height
 
     // append the rectangle to capture mouse               // **********
     vis.svg.append("rect")                                     // **********
@@ -290,7 +263,6 @@ CountVis.prototype.updateVis = function(){
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Male Dialogue: "+Math.round(d.maleAve * 100)+"%");
 
-
         vis.focus.select("text.y4")
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
@@ -303,14 +275,11 @@ CountVis.prototype.updateVis = function(){
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Female Dialogue: "+Math.round((1-d.maleAve) * 100)+"%");
 
-
         vis.focus.select("text.y6")
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Female Dialogue : "+Math.round((1-d.maleAve) * 100)+"%");
-
-
 
         vis.focus.select(".x")
             .attr("transform",
