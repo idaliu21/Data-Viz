@@ -5,6 +5,8 @@
  * @param _data						-- the actual data: perDayData
  */
 var dateParser = d3.timeParse("%Y");
+var formatTime = d3.timeFormat("%Y");
+var bisectDate = d3.bisector(function(d) { return d.key; }).left;
 
 CountVis = function(_parentElement, _data, _MyEventHandler){
     this.parentElement = _parentElement;
@@ -16,10 +18,22 @@ CountVis = function(_parentElement, _data, _MyEventHandler){
     this.data.forEach(function (d) {
         d.count = Object.keys(d.values).length;
     });
+    //get average of male / female percent
+    this.data.forEach(function (d){
+        var ave= function(d){
+            var male = 0,
+                ave;
+            for(var i = 0; i <d.count;i++){
+                male += d.values[i].male_per;
+            }
+            return male/d.count;
+        };
+        d.maleAve = ave(d);
+    });
 
     //sort the data by year
     this.data.sort(function(a,b){
-        return new Date(b.key) - new Date(a.key);
+        return new Date(a.key) - new Date(b.key);
     });
 
     this.data.forEach(function (t) {
@@ -28,7 +42,7 @@ CountVis = function(_parentElement, _data, _MyEventHandler){
 
     this.myEventHandler = _MyEventHandler;
     this.initVis();
-    // console.log(this.data);
+    console.log(this.data);
 };
 
 /*
@@ -38,10 +52,10 @@ CountVis = function(_parentElement, _data, _MyEventHandler){
 CountVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 0, bottom: 60, left: 60 };
+    vis.margin = { top: 40, right: 0, bottom: 60, left: 0 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
-    vis.height = 250 - vis.margin.top - vis.margin.bottom;
+    vis.height = 200 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -53,7 +67,7 @@ CountVis.prototype.initVis = function(){
 
     // Scales and axes
     vis.x = d3.scaleTime()
-        .range([150, vis.width-150]);    //250, -350
+        .range([150, vis.width-150]);    //250, -350,  150,-150
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -67,7 +81,7 @@ CountVis.prototype.initVis = function(){
 
 
     // Set domains
-    var minMaxY= [0, d3.max(vis.data.map(function(d){ return d.count; }))];
+    var minMaxY= [0, d3.max(vis.data.map(function(d){ return d.maleAve; }))];  //d.count
     vis.y.domain(minMaxY);
 
     var minMaxX = d3.extent(vis.data.map(function(d){ return d.key; }));
@@ -88,48 +102,53 @@ CountVis.prototype.initVis = function(){
         .attr("y", -8)
         .text("movies");
 
+    // //background-orange rect
+    // vis.svg
+    //     .append("rect")
+    //     .attr("x", 150)
+    //     .attr("y", 100)
+    //     .attr("fill", "#FF8A5D")
+    //     .attr("width", 1200)
+    //     .attr("height", 800);
+
 
     // Append a path for the area function, so that it is later behind the brush overlay
+    vis.timePathup = vis.svg.append("path")
+        .attr("class", "areaup area-time");
     vis.timePath = vis.svg.append("path")
         .attr("class", "area area-time");
 
+
     // Define the D3 path generator
+    vis.areaup = d3.area()
+        .curve(d3.curveCardinal)
+        .x(function(d) {
+            return vis.x(d.key);
+        })
+        .y0(0)
+        .y1(function(d) { return vis.y( d.maleAve ); });  //d.count
     vis.area = d3.area()
         .curve(d3.curveCardinal)
         .x(function(d) {
             return vis.x(d.key);
         })
         .y0(vis.height)
-        .y1(function(d) { return vis.y( d.count ); });
+        .y1(function(d) { return vis.y( d.maleAve ); });  //d.count
 
-
-    // Initialize brushing component
-    // vis.brush = d3.brushX()
-    //     .on("brush",function(){
-    //         console.log('1');
-    //         // User selected specific region
-    //         vis.currentBrushRegion = d3.event.selection;
-    //         //     if (vis.currentBrushRegion == null) {
-    //         //         // vis.currentBrushRegion=[0,0];
-    //         //         console.log('2');
-    //         //     }
-    //         // console.log('2');
-    //         // console.log(vis.currentBrushRegion);
-    //         // vis.currentBrushRegion = vis.currentBrushRegion.map(vis.x.invert);
-    //         // console.log('3');
-    //         // console.log(vis.x.invert);
-    //         // $(vis.myEventHandler).trigger("selectionChanged", vis.currentBrushRegion);
-    //         // console.log(vis.currentBrushRegion);
-    //         // console.log('4');
-    //     }
-    //     )
-    //     .extent([[0,0],[vis.width,vis.height]]);
 
 
     // Append brush component here
     // vis.svg.append("g")
     //     .attr("class", "brush");
-
+    // add tool tip for movie names and percentage
+    // vis.tip_disney = d3.tip()
+    //     .attr("class", "d3-tip")
+    //     .attr("font-size",10)
+    //     .offset([100, 200])
+    //     .html(function(d) {
+    //         return d.maleAve;
+    //     });
+    // vis.svg.call(vis.tip_disney);
 
     // (Filter, aggregate, modify data)
     vis.wrangleData();
@@ -165,6 +184,10 @@ CountVis.prototype.updateVis = function(){
     // Call the area function and update the path
     // D3 uses each data point and passes it to the area function.
     // The area function translates the data into positions on the path in the SVG.
+    vis.timePathup
+        .datum(vis.displayData)
+        .attr("d", vis.areaup);
+
     vis.timePath
         .datum(vis.displayData)
         .attr("d", vis.area);
@@ -174,4 +197,130 @@ CountVis.prototype.updateVis = function(){
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
 
+
+    ////////////////////////////////////////////////////////////////
+    vis.focus = vis.svg.append("g")
+        .style("display","none");
+    // append the x line
+    vis.focus.append("line")
+        .attr("class", "x")
+        .style("stroke", "blue")
+        .style("stroke-dasharray", "3,3")
+        .style("opacity", 0.5)
+        .attr("y1", 150)
+        .attr("y2", vis.height);
+
+    // append the rectangle to capture mouse               // **********
+    vis.svg.append("rect")                                     // **********
+        .attr("width", vis.width)                              // **********
+        .attr("height", vis.height)                            // **********
+        .style("fill", "none")                             // **********
+        .style("pointer-events", "all")                    // **********
+        .on("mouseover", function() { vis.focus.style("display", null); })
+        .on("mouseout", function() { vis.focus.style("display", "none"); })
+        .on("mousemove", mousemove);                       // **********
+// place the value at the intersection
+    vis.focus.append("text")
+        .attr("class", "y1")
+        .style("stroke", "white")
+        .style("stroke-width", "3.5px")
+        // .style("opacity", 1)
+        .attr("dx", 8)
+        .attr("dy", "-.3em");
+    vis.focus.append("text")
+        .attr("class", "y2")
+        .attr("dx", 8)
+        .attr("dy", "-.3em");
+// place the date at the intersection
+    vis.focus.append("text")
+        .attr("class", "y3")
+        .style("stroke", "white")
+        .style("stroke-width", "2px")
+        // .style("opacity", 0.8)
+        .attr("dx", 8)
+        .attr("dy", "0.6em");
+    vis.focus.append("text")
+        .attr("class", "y4")
+        .attr("dx", 8)
+        .attr("dy", "0.6em");
+    // place the date at the intersection
+    vis.focus.append("text")
+        .attr("class", "y5")
+        .style("stroke", "white")
+        .style("stroke-width", "2px")
+        // .style("opacity", 0.8)
+        .attr("dx", 8)
+        .attr("dy", "1.5em");
+    vis.focus.append("text")
+        .attr("class", "y6")
+        .attr("dx", 8)
+        .attr("dy", "1.5em");
+// append the rectangle to capture mouse
+    vis.svg.append("rect")
+        .attr("width", vis.width)
+        .attr("height", vis.height)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .on("mouseover", function() { vis.focus.style("display", null); })    //moseover show all, null-visible ; block - useful
+        .on("mouseout", function() { vis.focus.style("display", "none"); })    //mouseout, disappear
+        .on("mousemove", mousemove);
+//
+    function mousemove() {
+        var x0 = vis.x.invert(d3.mouse(this)[0] - vis.margin.left),              // position of the mouse of x.   xScale.invert - daytime object convert into the pixel,
+            i = bisectDate(vis.displayData, x0, 1),                   //  x0- actual daytime object,
+            d0 = vis.displayData[i - 1],                              // *
+            d1 = vis.displayData[i],                                  //
+            d = x0 - d0.key > d1.key - x0 ? d1 : d0;     // compare the distance, if d1 is higher, choose d1, otherwise d0
+
+        vis.focus.select("text.y1")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+  "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top)+ ")")
+            .text( "Year: "+formatTime(d.key));
+
+        vis.focus.select("text.y2")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top) + ")")
+            .text("Year: "+formatTime(d.key) );
+
+        vis.focus.select("text.y3")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
+            .text("Average Male Dialogue: "+Math.round(d.maleAve * 100)+"%");
+
+
+        vis.focus.select("text.y4")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
+            .text("Average Male Dialogue: "+Math.round(d.maleAve * 100)+"%");
+
+        vis.focus.select("text.y5")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
+            .text("Average Female Dialogue: "+Math.round((1-d.maleAve) * 100)+"%");
+
+
+        vis.focus.select("text.y6")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
+            .text("Average Female Dialogue : "+Math.round((1-d.maleAve) * 100)+"%");
+
+
+
+        vis.focus.select(".x")
+            .attr("transform",
+                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+  "," + vis.y(vis.displayData[i].maleAve) + " )")
+            .attr("y2", vis.height - vis.x(vis.displayData[i].maleAve));
+
+    }
+
+
 };
+
+
+

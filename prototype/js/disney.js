@@ -30,7 +30,7 @@ DisneyVis.prototype.initVis = function(){
 
     vis. radius = 5;
     vis. disneytop =100;
-    vis. disneyleft = 100;
+    vis. disneyleft = 120;
     vis. disneypadding = 14;
 
     vis. color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
@@ -192,8 +192,8 @@ DisneyVis.prototype.updateVis = function() {
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) {
-                if(d.data.gender =="f"){return "#FF8A5D";}
-                else return "#62ABFD";
+                if(d.data.gender =="f"){return "#FFD1C0";}
+                else return "#AED6F1";
             });
         document.getElementById("disney-test").innerHTML =
             "<strong>"+"Movie:"+"</strong>"+"<br>"+d.title +"<br>"+

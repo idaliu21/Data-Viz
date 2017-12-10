@@ -399,16 +399,19 @@ disney
 .d3-tip {
   line-height: 1;
   font-weight: bold;
-  padding: 12px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
 }
 
 .area {
-    fill: #aaa9aa;
+    fill: #AED6F1;
+    opacity: 0.5;
 }
-
+.areaup{
+    fill: #FFD1C0;
+    opacity: 0.5;
+}
 .area.area-age {
     fill: #94a97a;
 }
@@ -416,6 +419,10 @@ disney
 #disney-test{
     text-align: left;
     padding-left:100px;
+}
+
+.axis1 path{
+    stroke: white;
 }
 /*******************************
 nudity
