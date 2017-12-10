@@ -3,6 +3,9 @@ var maleNum = 17;
 var femaleNum = 13;
 
 
+
+
+
 //draw icons
 var maleIcon = "<img class=\"male-icon\" src=\"icons/male.svg\" alt=\"male\">";
 var allMaleIcon="";
