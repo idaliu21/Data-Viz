@@ -1,99 +1,108 @@
 
-var width_disney = 1400,
-    height_disney = 900;
 
-var radius = 6;
-var disneytop =100;
-var disneyleft = 100;
-var disneypadding= 16;
+DisneyVis = function(_parentElement, _data ){
+    this.parentElement = _parentElement;
+    this.data = _data;
+    this.initVis();
+    console.log(this.data);
+};
 
-var color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
-var color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
+/*
+ * Data wrangling
+ */
+
+DisneyVis.prototype.wrangleData = function(){
+    var vis = this;
+
+    this.displayData = this.data;
+
+    // Update the visualization
+    vis.updateVis();
+};
 
 var formatPercent = d3.format(".0%");
 
-var disney_data=[];
+DisneyVis.prototype.initVis = function(){
+    var vis = this;
+
+    vis. width_disney = 1250;
+    vis.height_disney = 500;
+
+    vis. radius = 5;
+    vis. disneytop =100;
+    vis. disneyleft = 100;
+    vis. disneypadding = 14;
+
+    vis. color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
+    vis. color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
+
+
+
 // append svg to the block
-var svg_filmdata = d3.select('#disney').append("svg")
-    .attr("width",width_disney)
-    .attr("height",height_disney);
+    vis. svg_filmdata = d3.select('#disney').append("svg")
+        .attr("width",vis.width_disney)
+        .attr("height",vis.height_disney);
 
 // add tool tip for movie names and percentage
-var tool_tip_disney = d3.tip()
-    .attr("class", "d3-tip")
-    .attr("font-size",10)
-    .offset([30, 80])
-    .html(function(d) {
-        return d.title +"<br>"+"female: " + Math.round(d.female_per * 100)+"%"+"</br>"+"male: " + Math.round(d.male_per*100)+"%" });
-svg_filmdata.call(tool_tip_disney);
+    vis. tool_tip_disney = d3.tip()
+        .attr("class", "d3-tip")
+        .attr("font-size",10)
+        .offset([100, 80])
+        .style("opacity", .5)
+        .html(function(d) {
+            return "Name:"+d.title +"<br>"+"Female Dialogue: " + Math.round(d.female_per * 100)+"%"+"</br>"+"Male Dialogue: " + Math.round(d.male_per*100)+"%"+"<br>"
+        });
 
-// load data for disney
-d3.csv("data/disney.csv", function(csv) {
-    disney_data= csv;
+    vis.svg_filmdata.call(vis.tool_tip_disney);
 
-    disney_data.forEach(function (d) {
-        d.female_per = +d.female_per;
-        d.male_per= +d.male_per;
-        d.year = +d.year;
-    });
-
-    //sort the data by female percentage
-    disney_data.sort(function (a,b) {
-        return a.female_per - b.female_per;
-    });
+    vis.wrangleData();
+};
 
 
-    createVis();
-    // Create visualization instances
-});
-
-
-function createVis() {
-    console.log(disney_data);
-
-
-    var width_rec = 79 * disneypadding + 2 * radius;
+DisneyVis.prototype.updateVis = function() {
+    var vis = this;
+    vis.width_rec = 79 * vis.disneypadding + 2 * vis.radius;
 
     // scale for male
-    var xscale_male =d3.scaleLinear()
-        .range([0, width_rec*0.42,width_rec*0.77, width_rec*0.85 ])
+    vis. xscale_male =d3.scaleLinear()
+        .range([0, vis.width_rec *0.42,vis.width_rec*0.77, vis.width_rec*0.85 ])
         .domain([1, 0.8, 0.6, 0.5]);
     // sccale for female
-    var xscale_female =d3.scaleLinear()
-        .range([0,width_rec*0.08, width_rec*0.15 ])
+    vis. xscale_female = d3.scaleLinear()
+        .range([0,vis.width_rec*0.08, vis.width_rec*0.15 ])
         .domain([0.5, 0.6, 1]);
 
     //add axis for female
-    var xAxis = d3.axisTop()
-        .scale(xscale_female)
+    vis. xAxis = d3.axisTop()
+        .scale(vis.xscale_female)
         .tickValues([0.5, 0.6, 1])
         .tickFormat(formatPercent);
-    svg_filmdata.append("g")
-        .attr("class","axis x-axis")
-        .attr("transform","translate("+(width_rec * 0.85 + radius +disneyleft) +","+80+")")
-        .call(xAxis);
-    svg_filmdata.append("text")
+    vis.svg_filmdata.append("g")
+        .attr("class","axis1 x-axis")
+        .attr("transform","translate("+(vis.width_rec * 0.85 + vis.radius + vis.disneyleft) +","+80+")")
+        .call(vis.xAxis);
+    vis.svg_filmdata.append("text")
         .attr("class", "label_right")
         .attr("fill", "black")
-        .attr("x", width_rec - 30 + disneyleft)
+        .attr("x", vis.width_rec - 30 + vis.disneyleft)
         .attr("y", 30)
         .attr("font-size",15)
         .style("text-anchor", "end")
         .text("Words for female");
 
     //add axis for male
-    var xAxis_left = d3.axisTop()
-        .scale(xscale_male)
+    vis. xAxis_left = d3.axisTop()
+        .scale(vis.xscale_male)
         .tickValues([1, 0.8, 0.6, 0.5])
         .tickFormat(formatPercent);
-    svg_filmdata.append("g")
-        .attr("class","axis x-axis")
-        .attr("transform","translate("+ (radius+disneyleft) +","+80+")")
-        .call(xAxis_left);
-    svg_filmdata.append("text")
+    vis.svg_filmdata.append("g")
+        .attr("class","axis1 x-axis")
+        .attr("transform","translate("+ (vis.radius+ vis.disneyleft) +","+80+")")
+        .call(vis.xAxis_left);
+    vis.svg_filmdata.append("text")
         .attr("class", "label_left")
         .attr("fill", "black")
-        .attr("x", width_rec/4 +100)
+        .attr("x", vis.width_rec/4 +100)
         .attr("y", 30)
         .attr("font-size",15)
         .style("text-anchor", "end")
@@ -101,68 +110,121 @@ function createVis() {
 
 
     //append circles
-    svg_filmdata.selectAll("circle")
-        .data(disney_data)
+    vis.svg_filmdata.selectAll("circle")
+        .data(vis.data)
         .enter()
         .append("circle")
         .attr("class", "dot")
-        // .attr("fill", function (d) {
-        //     if (d.female_per>0.5){
-        //         return "red";
-        //     }
-        //     else{
-        //         return "blue";
-        //     }
-        //     // "url(#gradient)")
-        // })
-        .attr("r", radius)
-        .on("mouseover", tool_tip_disney.show)
-        .on("mouseout", tool_tip_disney.hide)
+        .attr("r", vis.radius)
+        .on("mouseover", handleMouseOver)  //vis.tool_tip_disney.show,
+        .on("mouseout", handleMouseOut
+            )//vis.tool_tip_disney.hide
         .style("fill", function (d,i) {
             var index_;
             if (i % 25 ==0) {index_ = (i / 25) + 1}
             else{ index_=Math.ceil(i/25) }
             // return "rgb("+0+","+(255-index_*3)+", " + (255-index_*3) + ")"
             if (index_ < 50) {
-                return color_blue[0]}
+                return vis.color_blue[0]}
             else if (index_ < 58) {
-                return color_blue[1]}
+                return vis.color_blue[1]}
             else if (index_ < 62) {
-                return color_blue[2]}
+                return vis.color_blue[2]}
             else if (index_ < 65) {
-                return color_blue[3]}
+                return vis.color_blue[3]}
             else if (index_ < 68) {
-                return color_blue[4]}
+                return vis.color_blue[4]}
 
             else if (index_ < 70) {
-                return color_orange[0]}
+                return vis.color_orange[0]}
             else if (index_ < 72) {
-                return color_orange[2]}
+                return vis.color_orange[2]}
             else if (index_ < 74) {
-                return color_orange[3]}
+                return vis.color_orange[3]}
             else if (index_ < 76) {
-                return color_orange[4]}
-            else {return color_orange[5] }
+                return vis.color_orange[4]}
+            else {return vis.color_orange[5] }
         })
         .attr("cy",function (d,index) {
             // console.log(index);
             if (index % 25 ==0){
-                return disneypadding * 25 + disneytop;
+                return vis.disneypadding * 25 + vis.disneytop;
             }
             else{
-                return disneypadding*(index % 25) + disneytop;
+                return vis.disneypadding*(index % 25) + vis.disneytop;
             }}
         )
         .attr("cx", function(d, index) {
                 if (index % 25 ==0){
-                    return ((index/25)+1) * disneypadding + disneyleft;
+                    return ((index/25)+1) * vis.disneypadding + vis.disneyleft;
                 }
                 else{
-                    return (Math.ceil(index/25)) * disneypadding + disneyleft }
+                    return (Math.ceil(index/25)) * vis.disneypadding + vis.disneyleft }
             }
         );
 
-    // document.getElementById("film-data").innerHTML = "Film Dialogue Broken-down by Gender";
+
+//////////////////////////////Pie//////////////////////////////////
+    var svg1 = d3.select('body')
+        .append('svg')
+        .attr("width",300)
+        .attr("height",200);
+    var radius = 70;
+    // .attr({ width: 500, height: 200 });
+    // Create Event Handlers for mouse
+    var svg_reveal = d3.select('#pie').append("svg")
+        .attr("width",300)
+        .attr("height",300);
+
+    function handleMouseOver(d,i) {
+        ////pie and its text////
+        var data = [{"percent":d.female_per, "gender":"f"},{"percent":d.male_per, "gender":"m"}];
+        var pie = d3.pie()
+            .value(function(d) { return d.percent; })(data);
+        var arc = d3.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+        var g = svg_reveal.selectAll("arc")
+            .data(pie)
+            .enter().append("g")
+            .attr("class", "arc")
+            .attr("transform", "translate(" + 100 + "," + 200 + ")");
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function(d) {
+                if(d.data.gender =="f"){return "#FF8A5D";}
+                else return "#62ABFD";
+            });
+        document.getElementById("disney-test").innerHTML =
+            "<strong>"+"Movie:"+"</strong>"+"<br>"+d.title +"<br>"+
+            "<strong>"+"Female Dialogue: "+"</strong>"+"<br>" + Math.round(d.female_per * 100)+"%"+"</br>"+
+            "<strong>"+"Male Dialogue: "+"</strong>"+"<br>"+ Math.round(d.male_per*100)+"%"+"<br>";
 
 
+        //mouseover for the points
+        // Use D3 to select element, change color and size
+        d3.select(this).attr({
+            // fill: "orange",
+            r: vis.radius * 2
+        });
+
+        // d3.select(this)
+        //     // .transition()
+        //     // .duration(1000)
+        //     .attr(
+        //         'stroke-width',5
+        //     //     {fill: "orange",
+        //     // r: radius * 2 }
+        // );
+    }
+
+    function handleMouseOut(d, i) {
+        // Use D3 to select element, change color back to normal
+        d3.select(this).attr({
+            fill: "black",
+            r: radius
+        });
+        // Select text by id and then remove
+        d3.select("#t" + d.x + "-" + d.y + "-" + i).remove();  // Remove text location
+    }
 }

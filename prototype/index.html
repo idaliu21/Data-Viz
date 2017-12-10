@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/leaflet.css" />
+
 </head>
 <body>
 <!-- Load Google Font -->
@@ -149,8 +150,6 @@
 
 
 
-
-
     </div>
 
     <div class="container">
@@ -172,10 +171,22 @@
       <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
     </div>
     <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
+
     <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
-    <div class="disney" id="disney">
-      <div></div>
+
+    <div class="row">
+      <div class="col-sm-9"  id="disney"></div>
+
+      <div class="col-sm-3" >
+        <div id="pie"></div>
+        <div id="disney-test"></div>
+      </div>
     </div>
+    </div>
+
+
+
+    <div id="disney_time" ></div>
   </div>
 
   <!-- Beyond Data  -->
@@ -194,12 +205,10 @@
   <!-- Load JS libraries -->
   <script src="js/d3.js"></script>
   <script src="js/jquery.min.js"></script>
-<script src="js/queue.v1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+  <script src="js/queue.v1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/leaflet.js"></script>
-<script src="js/d3-tip.js"></script>
-
-
+  <script src="js/d3-tip.js"></script>
 
   <!-- Visualization objects -->
   <script src="js/stationMap.js"></script>
@@ -209,7 +218,12 @@
   <script src="js/gender-composition.js"></script>
   <script src="js/salary-barchart.js"></script>
   <script src="js/oscar-best-age.js"></script>
-  <script src="js/disney.js"></script>
+
+
+<script src="js/disney_main.js"></script>
+<script src="js/disney.js"></script>
+  <script src="js/disney_time.js"></script>
+
   <script src="js/nudity.js"></script>
 
 

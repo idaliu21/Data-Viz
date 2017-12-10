@@ -26,7 +26,7 @@ h3{
     padding-left: 500px;
 }
 
-#barcontainer
+#barcontainer{
 
     width: 65%;
     padding-left: 500px;
@@ -269,7 +269,7 @@ salary wall
 
 .film-data{
   background-color:white;
-  height: 2000px;
+  height: 1800px;
 }
 
 .nudity{
@@ -292,6 +292,19 @@ disney
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
+}
+
+.area {
+    fill: #aaa9aa;
+}
+
+.area.area-age {
+    fill: #94a97a;
+}
+
+#disney-test{
+    text-align: left;
+    padding-left:100px;
 }
 /*******************************
 nudity
