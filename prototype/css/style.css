@@ -257,11 +257,13 @@ salary
     padding:0;
 }
 .salary-guess-top{
+
     position:absolute;
     top:30%;
     left:50%;
     line-height:200%;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%,-50%,0);
+
 }
 
 .salary-guess-left{
