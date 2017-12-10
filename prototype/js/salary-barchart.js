@@ -18,8 +18,13 @@ document.getElementById("guess2").onclick = function(){
         demo = new CountUp("formGroupExampleInput", 0, 33, 0, 2.5, options);
         demo.start();
     }
-}
 
+    document.getElementById("formGroupExampleInput").style.color = "#FF804F";
+};
+
+
+
+//reveal number
 function revealMaleNum(){
     var options = {
         useEasing: true,
@@ -44,13 +49,14 @@ function revealFemaleNum(){
         demo.start();
     }
 }
+
 /*
 https://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
  */
 var firstTime=true;
 function testScroll(ev){
     console.log("humm"+document.documentElement.scrollTop);
-    if(document.documentElement.scrollTop>800 && firstTime){
+    if(document.documentElement.scrollTop>600 && firstTime){
 
         revealMaleNum();
         revealFemaleNum();
