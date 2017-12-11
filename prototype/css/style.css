@@ -35,6 +35,10 @@ p{
     font-size: 18px;
 }
 
+.bigger{
+    font-size: 30px;
+}
+
 .center-p{
     margin:auto;
     width:65%;
