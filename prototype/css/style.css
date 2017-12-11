@@ -10,7 +10,8 @@ body {
 
 h1{
     margin:auto;
-    padding: 20px;
+    padding-top:150px;
+    font-size:50px;
 }
 
 h3{
@@ -31,6 +32,7 @@ h4{
 p{
     margin:auto;
     padding:10px;
+    font-size: 18px;
 }
 
 .center-p{
@@ -90,40 +92,37 @@ p{
 /*******************************
 BANNER
 ********************************/
+#first-head{
+    padding-top: 150px;
+}
 
 .slidetext{
-    text-align: left;
-    padding-left: 500px;
+    text-align: center;
+    /*left:50%;*/
+    /*transform: translate(-50%, 0);*/
+    /*padding-left: 50%;*/
 }
 
-#barcontainer{
-
-    width: 100%;
-    padding-left: 500px;
-    padding-top: 120px;
-}
+/*#barcontainer{*/
+    /*width: 100%;*/
+    /*!*padding-left: 500px;*!*/
+    /*!*padding-top: 120px;*!*/
+/*}*/
 
 #bar
 {
-    width:43%;
+    width:100%;
     height:15px;
     fill:#C5DBF5;
     rx:4px;
     ry:4px;
     opacity: 0.9;
     outline: none;
-
-}
-
-
-#slidetext
-{
-
 }
 
 
 #slidercontainer {
-    width: 31%;
+    width: 500px;
     padding-left: 10px;
     padding-top: 50px;
 }
@@ -167,7 +166,7 @@ BANNER
 #remind{
     color: #FF804F;
     margin-top: 50px;
-    margin-right:300px;
+    /*margin-right:300px;*/
     height:25px;
 }
 
@@ -191,7 +190,7 @@ BANNER
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 700px;
+    height: 950px;
     background-image: url("images/actor_and_actress.jpg");
 }
 

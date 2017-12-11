@@ -291,7 +291,9 @@ ageVis.prototype.initVis = function(ActorData,ActressData,NominActorData,NominAc
         }
 
         vis.updateVis();
+        // console.log(vis.temp_Data);
     };
+
 
 
     document.getElementById("Nominee").onclick = function(){
@@ -512,10 +514,9 @@ ageVis.prototype.createVis=function(){
  第一次画 BARS
 
 
-     
 
      /**********************************************/
-
+// console.log(vis.temp_Data);
 
    var bars= vis.svg.selectAll('.rectActor')
         .data(vis.temp_Data)

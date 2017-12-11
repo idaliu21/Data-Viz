@@ -16,26 +16,23 @@
   <link rel="stylesheet" href="css/leaflet.css">
   <link rel="stylesheet" href="css/animate.css">
 
-
 </head>
 <body>
 <!-- Load Google Font -->
 <div class="banner">
-  <h1 class="white-text">Gender Inequity Among Actors</h1>
-  <h3 class="white-text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
+  <h1 class="white-text">Gender Inequity In Film Industry</h1>
+  <h3 class="white-text" id="first-head">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
   <p id="barcontainer" >
-    <svg width="1000" height="15"> <rect id="bar"> </rect></svg>
+    <svg width="480" height="15"> <rect id="bar"> </rect></svg>
   </p>
   <p class="white-text" id="slidetext" >
     Male Average Salary: 52,249 dollars/Per Year
   </p>
   <p id="slidercontainer">
-    <input class="slider" id="slider1" type="range" min="0" max="52,249"  value="52,249" orient="horizontal">
+    <input class="slider" id="slider1" type="range" min="0" max="52,249" value="0" orient="horizontal">
   </p>
   <p class="white-text">Value: <span id="demo"></span> dollars</p>
-  <p class="white-text slidetext" id="remind">
-    Please use the slider to guess the average salary of an actress per year.
-  </p>
+  <p class="white-text slidetext" id="remind">Please use the slider to guess the average salary of an actress per year.</p>
   <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
 
 </div>
