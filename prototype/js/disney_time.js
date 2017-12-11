@@ -68,7 +68,7 @@ CountVis.prototype.initVis = function(){
 
     // Scales and axes
     vis.x = d3.scaleTime()
-        .range([150, vis.width-150]);    //250, -350,  150,-150
+        .range([180, vis.width-200]);    //250, -350,  150,-150
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -97,17 +97,22 @@ CountVis.prototype.initVis = function(){
 
     vis.svg.append("g")
         .attr("class", "y-axis axis1")
-        .attr("transform", "translate(150," + 0 + ")");    //250
+        .attr("transform", "translate(180," + 0 + ")");    //250
 
     // Axis title
     vis.svg.append("text")
-        .attr("x", 1750)
-        .attr("y", 110)
+        .attr("x", 1600)
+        .attr("y", 115)
         .text("year");
     vis.svg.append("text")
         .attr("x", 110)
         .attr("y", -8)
-        .text("percentage");
+        .text("average percentage");
+    vis.svg.append("text")
+        .attr("x", 750)
+        .attr("y", 180)
+        .attr("font-size",18)
+        .text("Male and Female Average Dialogue Percentage");
 
     // Append a path for the area function, so that it is later behind the brush overlay
     vis.timePathup = vis.svg.append("path")

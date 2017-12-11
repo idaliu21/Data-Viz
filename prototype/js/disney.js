@@ -29,12 +29,13 @@ DisneyVis.prototype.initVis = function(){
     vis.height_disney = 500;
 
     vis. radius = 5;
-    vis. disneytop =100;
+    vis. disneytop =80;
     vis. disneyleft = 120;
     vis. disneypadding = 14;
 
     vis. color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
-    vis. color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
+    // vis. color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
+    vis. blue=["#D2D5E5","#B6CAEB", "#9DC5EA", "#85C1E9","#5DADE2", "#3498DB" ,"#2E86C1","#2874A6"];
 
 
 
@@ -84,11 +85,11 @@ DisneyVis.prototype.updateVis = function() {
     vis.svg_filmdata.append("text")
         .attr("class", "label_right")
         .attr("fill", "black")
-        .attr("x", vis.width_rec - 30 + vis.disneyleft)
-        .attr("y", 30)
-        .attr("font-size",15)
+        .attr("x", vis.width_rec - 26 + vis.disneyleft)
+        .attr("y", 50)
+        .attr("font-size",18)
         .style("text-anchor", "end")
-        .text("Words for female");
+        .text("Words for Actress");
 
     //add axis for male
     vis. xAxis_left = d3.axisTop()
@@ -102,11 +103,11 @@ DisneyVis.prototype.updateVis = function() {
     vis.svg_filmdata.append("text")
         .attr("class", "label_left")
         .attr("fill", "black")
-        .attr("x", vis.width_rec/4 +100)
-        .attr("y", 30)
-        .attr("font-size",15)
+        .attr("x", vis.width_rec/4 + 300)
+        .attr("y", 50)
+        .attr("font-size",18)
         .style("text-anchor", "end")
-        .text("Words for male");
+        .text("Words for Actor");
 
 
     //append circles
@@ -115,7 +116,6 @@ DisneyVis.prototype.updateVis = function() {
         .enter()
         .append("circle")
         .attr("class", "dot")
-        .attr("r", vis.radius)
         .on("mouseover", handleMouseOver)  //vis.tool_tip_disney.show,
         .on("mouseout", handleMouseOut
             )//vis.tool_tip_disney.hide
@@ -123,28 +123,35 @@ DisneyVis.prototype.updateVis = function() {
             var index_;
             if (i % 25 ==0) {index_ = (i / 25) + 1}
             else{ index_=Math.ceil(i/25) }
-            // return "rgb("+0+","+(255-index_*3)+", " + (255-index_*3) + ")"
-            if (index_ < 50) {
-                return vis.color_blue[0]}
+            if (index_ < 40) {
+                return vis.blue[7]}
+            else if (index_ < 50) {
+                return vis.blue[6]}
+            else if (index_ < 54) {
+                return vis.blue[5]}
+            else if (index_ < 56) {
+                return vis.blue[4]}
             else if (index_ < 58) {
-                return vis.color_blue[1]}
+                return vis.blue[3]}
             else if (index_ < 62) {
-                return vis.color_blue[2]}
+                return vis.blue[2]}
             else if (index_ < 65) {
-                return vis.color_blue[3]}
-            else if (index_ < 68) {
-                return vis.color_blue[4]}
-
+                return vis.blue[1]}
+            else if (index_ < 69) {
+                return vis.blue[0]}
             else if (index_ < 70) {
                 return vis.color_orange[0]}
-            else if (index_ < 72) {
+            else if (index_ < 71) {
                 return vis.color_orange[2]}
-            else if (index_ < 74) {
+            else if (index_ < 72) {
                 return vis.color_orange[3]}
-            else if (index_ < 76) {
+            else if (index_ < 74) {
                 return vis.color_orange[4]}
-            else {return vis.color_orange[5] }
+            else if (index_ < 77) {
+                return vis.color_orange[5]}
+            else {return vis.color_orange[6] }
         })
+        .attr("r", vis.radius)
         .attr("cy",function (d,index) {
             // console.log(index);
             if (index % 25 ==0){
@@ -200,31 +207,17 @@ DisneyVis.prototype.updateVis = function() {
             "<strong>"+"Female Dialogue: "+"</strong>"+"<br>" + Math.round(d.female_per * 100)+"%"+"</br>"+
             "<strong>"+"Male Dialogue: "+"</strong>"+"<br>"+ Math.round(d.male_per*100)+"%"+"<br>";
 
-
         //mouseover for the points
         // Use D3 to select element, change color and size
-        d3.select(this).attr({
-            // fill: "orange",
-            r: vis.radius * 2
-        });
-
-        // d3.select(this)
-        //     // .transition()
-        //     // .duration(1000)
-        //     .attr(
-        //         'stroke-width',5
-        //     //     {fill: "orange",
-        //     // r: radius * 2 }
-        // );
+        d3.select(this)
+             .attr("r",vis.radius * 1.8)
     }
 
     function handleMouseOut(d, i) {
         // Use D3 to select element, change color back to normal
-        d3.select(this).attr({
-            fill: "black",
-            r: radius
-        });
+        d3.select(this)
+            .attr("r",vis.radius )
         // Select text by id and then remove
-        d3.select("#t" + d.x + "-" + d.y + "-" + i).remove();  // Remove text location
+        // d3.select("#t" + d.x + "-" + d.y + "-" + i).remove();  // Remove text location
     }
-}
+};
