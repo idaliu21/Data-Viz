@@ -29,8 +29,8 @@ DisneyVis.prototype.initVis = function(){
     vis.height_disney = 500;
 
     vis. radius =4;
-    vis. disneytop =80;
-    vis. disneyleft = 0;
+    vis. disneytop =130;
+    vis. disneyleft = 10;
     vis. disneypadding = 12;
 
     vis. color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
@@ -80,13 +80,13 @@ DisneyVis.prototype.updateVis = function() {
         .tickFormat(formatPercent);
     vis.svg_filmdata.append("g")
         .attr("class","axis1 x-axis")
-        .attr("transform","translate("+(vis.width_rec * 0.85 + vis.radius + vis.disneyleft) +","+80+")")
+        .attr("transform","translate("+(vis.width_rec * 0.85 + vis.radius + vis.disneyleft) +","+130+")")
         .call(vis.xAxis);
     vis.svg_filmdata.append("text")
         .attr("class", "label_right")
         .attr("fill", "black")
-        .attr("x", vis.width_rec - 26 + vis.disneyleft)
-        .attr("y", 50)
+        .attr("x", vis.width_rec + vis.disneyleft)
+        .attr("y", 95)
         .attr("font-size",18)
         .style("text-anchor", "end")
         .text("Words for Actress");
@@ -98,13 +98,13 @@ DisneyVis.prototype.updateVis = function() {
         .tickFormat(formatPercent);
     vis.svg_filmdata.append("g")
         .attr("class","axis1 x-axis")
-        .attr("transform","translate("+ (vis.radius+ vis.disneyleft) +","+80+")")
+        .attr("transform","translate("+ (vis.radius+ vis.disneyleft) +","+130+")")
         .call(vis.xAxis_left);
     vis.svg_filmdata.append("text")
         .attr("class", "label_left")
         .attr("fill", "black")
         .attr("x", vis.width_rec/4 + 300)
-        .attr("y", 50)
+        .attr("y", 90)
         .attr("font-size",18)
         .style("text-anchor", "end")
         .text("Words for Actor");
