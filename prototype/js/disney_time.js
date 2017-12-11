@@ -53,7 +53,7 @@ CountVis = function(_parentElement, _data, _MyEventHandler){
 CountVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 0, bottom: 60, left: 0 };
+    vis.margin = { top: 40, right: 20, bottom: 60, left:20 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
     vis.height = 200 - vis.margin.top - vis.margin.bottom;
@@ -68,7 +68,7 @@ CountVis.prototype.initVis = function(){
 
     // Scales and axes
     vis.x = d3.scaleTime()
-        .range([180, vis.width-200]);    //250, -350,  150,-150
+        .range([0.1*vis.width, vis.width-0.1*vis.width]);    //250, -350,  150,-150，   180，-200
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -80,7 +80,7 @@ CountVis.prototype.initVis = function(){
         .scale(vis.y)
         .tickValues([0.2,0.4,0.6, 0.8])
         .tickFormat(formatPercent);
-        // .ticks(6);
+
 
 
     // Set domains
@@ -97,11 +97,11 @@ CountVis.prototype.initVis = function(){
 
     vis.svg.append("g")
         .attr("class", "y-axis axis1")
-        .attr("transform", "translate(180," + 0 + ")");    //250
+        .attr("transform", "translate("+0.1*vis.width+"," + 0 + ")");    //250
 
     // Axis title
     vis.svg.append("text")
-        .attr("x", 1600)
+        .attr("x", vis.width  -  7*vis.margin.right)
         .attr("y", 115)
         .text("year");
     vis.svg.append("text")
@@ -259,43 +259,43 @@ CountVis.prototype.updateVis = function(){
 
         vis.focus.select("text.y1")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+  "," +
+                "translate("  + (vis.x(vis.displayData[i].key))+  "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top)+ ")")
             .text("Year: "+formatTime(d.key) );
 
         vis.focus.select("text.y2")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                "translate("  + (vis.x(vis.displayData[i].key) )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top) + ")")
             .text("Year: "+formatTime(d.key) );
 
         vis.focus.select("text.y3")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                "translate("  + (vis.x(vis.displayData[i].key) )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Male Words: "+Math.round(d.maleAve * 100)+"%");
 
         vis.focus.select("text.y4")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                "translate("  + (vis.x(vis.displayData[i].key)  )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Male Words: "+Math.round(d.maleAve * 100)+"%");
 
         vis.focus.select("text.y5")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                "translate("  + (vis.x(vis.displayData[i].key)  )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Female Words: "+Math.round((1-d.maleAve) * 100)+"%");
 
         vis.focus.select("text.y6")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
+                "translate("  + (vis.x(vis.displayData[i].key) )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
             .text("Average Female Words: "+Math.round((1-d.maleAve) * 100)+"%");
 
         vis.focus.select(".x")
             .attr("transform",
-                "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+  "," + vis.y(vis.displayData[i].maleAve) + " )")
+                "translate("  + (vis.x(vis.displayData[i].key) )+  "," + vis.y(vis.displayData[i].maleAve) + " )")
             .attr("y2", vis.height - vis.x(vis.displayData[i].maleAve));
 
     }

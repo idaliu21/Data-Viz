@@ -444,7 +444,10 @@ disney
 
 #disney-test{
     text-align: left;
-    padding-left:100px;
+    padding-left:70%;
+}
+#pie{
+    padding-left:60%;
 }
 
 .axis1 path{
@@ -453,29 +456,18 @@ disney
 
 #disney_time{
     padding-bottom: 50px;
+    width:100%;
 }
 
 /*******************************
 nudity
 ********************************/
-#reveal{
-    /*padding-left:100px;*/
-}
-.nudity{
-  /*background-image:url("../pic/nudity1.jpg");*/
-}
-
-.head_white{
-  /*color: white;*/
-  /*font-size: 40px;*/
-}
-
 
 .center-icon{
     /*padding-left: 500px;*/
     margin: auto;
     width: 50%;
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 50px;
     text-align: left;
 }

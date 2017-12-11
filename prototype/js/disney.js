@@ -28,10 +28,10 @@ DisneyVis.prototype.initVis = function(){
     vis. width_disney = 1250;
     vis.height_disney = 500;
 
-    vis. radius = 5;
+    vis. radius =4;
     vis. disneytop =80;
-    vis. disneyleft = 120;
-    vis. disneypadding = 14;
+    vis. disneyleft = 0;
+    vis. disneypadding = 12;
 
     vis. color_orange = ["#EFE0E0", "#FFF2ED","#FFDDD0", "#FFC9B4", "#FFBEA5", "#FFA988", "#FF956C","#FF8A5D"];
     // vis. color_blue = ["#62ABFD","#7EB5F7","#9AC0F1","#B6CAEB","#D2D5E5"];
