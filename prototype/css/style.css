@@ -10,7 +10,6 @@ body {
 
 h1{
     margin:auto;
-    padding-top:150px;
     font-size:50px;
 }
 
@@ -175,8 +174,6 @@ BANNER
 }
 
 
-
-
 .place-holder{
 
   display: block;
@@ -191,7 +188,7 @@ BANNER
 .banner{
     background-color:lightgrey;
     width:100%;
-    background-size: 100% 100%;
+    background-size: 100% ;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 950px;
