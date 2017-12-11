@@ -508,6 +508,15 @@ ageVis.prototype.createVis=function(){
             return d.value*interval_height-22;});
 
 
+    /**********************************************
+ 第一次画 BARS
+
+
+     
+
+     /**********************************************/
+
+
    var bars= vis.svg.selectAll('.rectActor')
         .data(vis.temp_Data)
         .enter()
@@ -917,6 +926,14 @@ ageVis.prototype.updateVis = function() {
           var bars =  vis.svg.selectAll('.rectActor')
               .data(vis.temp_Data);
 
+
+
+          /**********************************************
+          当点击 Oscar nominee 的BUTTON时候，重新开始画这个图表
+此处有BUG！！！
+
+
+          /**********************************************/
        bars.enter()
              .append('rect')
              .attr("class", "rectActor")
