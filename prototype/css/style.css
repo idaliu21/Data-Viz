@@ -10,7 +10,6 @@ body {
 
 h1{
     margin:auto;
-    padding-top:150px;
     font-size:50px;
 }
 
@@ -33,6 +32,10 @@ p{
     margin:auto;
     padding:10px;
     font-size: 18px;
+}
+
+.bigger{
+    font-size: 30px;
 }
 
 .center-p{
@@ -171,8 +174,6 @@ BANNER
 }
 
 
-
-
 .place-holder{
 
   display: block;
@@ -187,7 +188,7 @@ BANNER
 .banner{
     background-color:lightgrey;
     width:100%;
-    background-size: 100% 100%;
+    background-size: 100% ;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 950px;
