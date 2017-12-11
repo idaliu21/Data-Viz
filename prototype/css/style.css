@@ -10,7 +10,8 @@ body {
 
 h1{
     margin:auto;
-    padding: 20px;
+    padding-top:150px;
+    font-size:50px;
 }
 
 h3{
@@ -31,6 +32,7 @@ h4{
 p{
     margin:auto;
     padding:10px;
+    font-size: 18px;
 }
 
 .center-p{
@@ -90,34 +92,41 @@ p{
 /*******************************
 BANNER
 ********************************/
+#first-head{
+    padding-top: 150px;
+}
 
 .slidetext{
-    text-align: left;
-    padding-left: 500px;
+    text-align: center;
+    /*left:50%;*/
+    /*transform: translate(-50%, 0);*/
+    /*padding-left: 50%;*/
 }
 
-#barcontainer {
-    width: 65%;
-    padding-left: 500px;
-    padding-top: 120px;
-}
+/*#barcontainer{*/
+    /*width: 100%;*/
+    /*!*padding-left: 500px;*!*/
+    /*!*padding-top: 120px;*!*/
+/*}*/
 
-#bar {
-    width:20%;
+#bar
+{
+    width:100%;
     height:15px;
     fill:#C5DBF5;
     rx:4px;
     ry:4px;
     opacity: 0.9;
     outline: none;
-
 }
 
-#slidecontainer {
-    width: 65%;
-    padding-left: 500px;
+
+#slidercontainer {
+    width: 500px;
+    padding-left: 10px;
     padding-top: 50px;
 }
+
 
 .slider {
     -webkit-appearance: none;
@@ -154,6 +163,16 @@ BANNER
 }
 
 
+#remind{
+    color: #FF804F;
+    margin-top: 50px;
+    /*margin-right:300px;*/
+    height:25px;
+}
+
+
+
+
 .place-holder{
 
   display: block;
@@ -167,12 +186,16 @@ BANNER
 
 .banner{
     background-color:lightgrey;
-    height: 700px;
+    width:100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 950px;
     background-image: url("images/actor_and_actress.jpg");
 }
 
 #bannerbutton {
-    margin-top: 150px;
+    margin-top: 20px;
 }
 
 
@@ -381,12 +404,12 @@ salary wall
 }
 
 .film-data{
-  background-color:white;
-  height: 2000px;
+  /*background-color:white;*/
+  /*height: 1800px;*/
 }
 
 .nudity{
-  height: 1200px;
+  /*height: 900px;*/
 }
 
 .young-face{
@@ -401,20 +424,75 @@ disney
 .d3-tip {
   line-height: 1;
   font-weight: bold;
-  padding: 12px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
 }
+
+.area {
+    fill: #AED6F1;
+    opacity: 0.5;
+}
+.areaup{
+    fill: #FFD1C0;
+    opacity: 0.5;
+}
+.area.area-age {
+    fill: #94a97a;
+}
+
+#disney-test{
+    text-align: left;
+    padding-left:70%;
+}
+#pie{
+    padding-left:60%;
+}
+
+.axis1 path{
+    stroke: white;
+}
+
+#disney_time{
+    padding-bottom: 50px;
+    width:100%;
+}
+
 /*******************************
 nudity
 ********************************/
 
-.nudity{
-  background-image:url("../pic/nudity1.jpg");
+.center-icon{
+    /*padding-left: 500px;*/
+    margin: auto;
+    width: 50%;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    text-align: left;
 }
 
-.head_white{
-  color: white;
-  font-size: 40px;
+
+
+/*******************************
+Oscar
+********************************/
+.rectActor{
+    overflow: hidden;
+    top: 0;
+
+}
+.buttonBest{
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+}
+
+.oscar-description{
+    margin:auto;
+    text-align: center;
+}
+
+/*bottom additional information*/
+.other{
+    height:600px;
 }

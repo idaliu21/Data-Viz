@@ -10,6 +10,9 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+
   <link rel="stylesheet" href="css/leaflet.css">
   <link rel="stylesheet" href="css/animate.css">
 
@@ -17,20 +20,19 @@
 <body>
 <!-- Load Google Font -->
 <div class="banner">
-  <h3 class="white-text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
+  <h1 class="white-text">Gender Inequity In Film Industry</h1>
+  <h3 class="white-text" id="first-head">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
   <p id="barcontainer" >
-    <svg width="1000" height="15"> <rect id="bar"> </rect></svg>
+    <svg width="480" height="15"> <rect id="bar"> </rect></svg>
   </p>
-  <p class="white-text slidetext">
+  <p class="white-text" id="slidetext" >
     Male Average Salary: 52,249 dollars/Per Year
   </p>
-  <p id="slidecontainer">
-    <input class="slider" type="range" min="20,000" max="90,000" step="1" value="0" orient="horizontal">
+  <p id="slidercontainer">
+    <input class="slider" id="slider1" type="range" min="0" max="52,249" value="0" orient="horizontal">
   </p>
-  <p>Value: <span id="demo"></span></p>
-  <p class="white-text slidetext">
-    Please use the slider to guess the average salary of an actress per year.
-  </p>
+  <p class="white-text">Value: <span id="demo"></span> dollars</p>
+  <p class="white-text slidetext" id="remind">Please use the slider to guess the average salary of an actress per year.</p>
   <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
 
 </div>
@@ -172,9 +174,9 @@
           <div class="blank-box"></div>
           <img class="picwall" src="pic/2013/2013_15.jpeg">
         </div>
-
       </div>
       <div class="col-lg-1"></div>
+
     </div>
 
     <div class="container wow fadeInLeft">
@@ -192,29 +194,110 @@
   <!-- Data In the Film -->
   <div class="film-data">
     <h3>Data In the Film</h3>
-    <h3> Age of Actors and Actress Winning Oscar Award</h3>
-    <div class="buttonBest">
-      <button type="button" class="btn btn-primary" id="Best" >Best Actor/Actress</button>
-      <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
-    </div>
-    <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
+
     <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
-    <div class="disney" id="disney">
-      <div></div>
+
+    <div class="row">
+      <div class="col-sm-3" >
+        <div id="pie"></div>
+        <div id="disney-test"></div>
+      </div>
+      <!--<div class="wow fadeIn" data-wow-duration="2s">-->
+        <div class="col-sm-9" id="disney"></div>
+        <!--<div class="col-lg-1" >-->
+
+        </div>
+
     </div>
   </div>
+
+    <div class="wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" id="disney_time" ></div>
+
 
   <!-- Beyond Data  -->
   <div class="nudity">
     <h3 class="head_white">Beyond Data - Nudity</h3>
-    <!--<img src="pic/nudity1.jpg" id="nudity">-->
-    <div class="col-sm-5" id = "reveal"></div>
-    <div class="col-sm-2" id = "naked"></div>
-    <div class="col-sm-5" id = "partially"></div>
+    <div class="center-icon" >
+      <p>In top 500 movies:</p>
+      <div class="wow bounceInUp" data-wow-duration="1s">
+      <br>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i style="font-size:40px;color:#FF8A5D">28.8% actress</i>
+      <br>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i  style="font-size:40px;color:#62ABFD">7% actors</i>
+      <p >wore sexually revealing clothes.</p>
+      </div>
+    </div>
 
+    <div class="center-icon">
+      <div class="wow bounceInUp" data-wow-duration="2s">
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i style="font-size:40px;color:#FF8A5D">26.2% actress</i>
+      <br>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i class="fa fa-male" style="font-size:50px;color:#62ABFD"></i>
+      <i  style="font-size:40px;color:#62ABFD">9.4% actors</i>
+      <p>got partially naked.</p>
+    </div>
+    </div>
+    <div class="center-icon">
+      <div class="wow bounceInUp" data-wow-duration="2s">
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:#FF8A5D"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i class="fa fa-female" style="font-size:50px;color:darkgrey"></i>
+      <i style="font-size:40px;color:#FF8A5D">33.3% actress</i>
+      <p>shown in sexually revealing attire or are partially naked.</p>
+    </div>
+    </div>
+    </div>
   </div>
-  <div class="young-face">
-    <h3>Beyond Data - Young Faces</h3>
+
+<div class="young-face">
+  <h3>Beyond Data - Young Faces</h3>
+  <h3> Age of Actors and Actress Winning Oscar Award</h3>
+  <div class="buttonBest">
+    <button type="button" class="btn btn-primary" id="Best" >Best Actor/Actress</button>
+    <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
+    <button type="button" class="btn btn-primary" id="Compare" >Compare</button>
+    <p id="label"><span>Actors</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actress</span></p>
+  </div>
+  <div class="container">
+    <div class="col-lg-3" id="oscar-description">
+    </div>
+    <div class="col-lg-9" id="oscar-nomination-age"></div>
   </div>
 
   <!-- Load JS libraries -->
@@ -224,27 +307,23 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/leaflet.js"></script>
   <script src="js/d3-tip.js"></script>
-  <script src="js/countUp.js"></script>
 
+  <script src="js/countUp.js"></script>
   <script src="js/wow.min.js"></script>
   <script>
       new WOW().init();
   </script>
-
-
-
-
-
-  <!-- Visualization objects -->
-  <script src="js/stationMap.js"></script>
 
   <!-- Load data, create visualizations -->
   <script src="js/main.js"></script>
   <script src="js/gender-composition.js"></script>
   <script src="js/salary-barchart.js"></script>
   <script src="js/oscar-best-age.js"></script>
+
+  <script src="js/disney_main.js"></script>
   <script src="js/disney.js"></script>
-  <script src="js/nudity.js"></script>
+  <script src="js/disney_time.js"></script>
+  <script src="js/banner.js"></script>
 
 
 </body>
