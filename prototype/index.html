@@ -21,18 +21,19 @@
 <body>
 <!-- Load Google Font -->
 <div class="banner">
+  <h1 class="white-text">Gender Inequity Among Actors</h1>
   <h3 class="white-text">Male Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn</h3>
   <p id="barcontainer" >
     <svg width="1000" height="15"> <rect id="bar"> </rect></svg>
   </p>
-  <p class="white-text slidetext">
+  <p class="white-text" id="slidetext" >
     Male Average Salary: 52,249 dollars/Per Year
   </p>
-  <p id="slidecontainer">
-    <input class="slider" type="range" min="20,000" max="90,000" step="1" value="0" orient="horizontal">
+  <p id="slidercontainer">
+    <input class="slider" id="slider1" type="range" min="0" max="52,249"  value="52,249" orient="horizontal">
   </p>
-  <p>Value: <span id="demo"></span></p>
-  <p class="white-text slidetext">
+  <p class="white-text">Value: <span id="demo"></span> dollars</p>
+  <p class="white-text slidetext" id="remind">
     Please use the slider to guess the average salary of an actress per year.
   </p>
   <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
@@ -196,12 +197,6 @@
   <!-- Data In the Film -->
   <div class="film-data">
     <h3>Data In the Film</h3>
-    <h3> Age of Actors and Actress Winning Oscar Award</h3>
-    <div class="buttonBest">
-      <button type="button" class="btn btn-primary" id="Best" >Best Actor/Actress</button>
-      <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
-    </div>
-    <div class="oscar-nomination-age" id="oscar-nomination-age"></div>
 
     <h3> Screenplay Dialogue in Disney, Broke by Gender</h3>
 
@@ -300,11 +295,23 @@
     <!--<div class="col-sm-1"></div>-->
 
   </div>
-  <div class="young-face">
-    <h3>Beyond Data - Young Faces</h3>
+
+<div class="young-face">
+  <h3>Beyond Data - Young Faces</h3>
+  <h3> Age of Actors and Actress Winning Oscar Award</h3>
+  <div class="buttonBest">
+    <button type="button" class="btn btn-primary" id="Best" >Best Actor/Actress</button>
+    <button type="button" class="btn btn-primary"  id="Nominee"  >Best Actor/Actress Nominee</button>
+    <button type="button" class="btn btn-primary" id="Compare" >Compare</button>
+    <p id="label"><span>Actors</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actress</span></p>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" id="oscar-description">
+    </div>
+    <div class="col-sm-8" id="oscar-nomination-age"></div>
   </div>
 
-  <!--<div class="other">-->
+    <!--<div class="other">-->
     <!--<h3>other</h3>-->
     <!--<div class="row">-->
       <!--<div class="col-sm-4"></div>-->
@@ -337,6 +344,8 @@
   <script src="js/disney_main.js"></script>
   <script src="js/disney.js"></script>
   <script src="js/disney_time.js"></script>
+  <script src="js/banner.js"></script>
+
 
 </body>
 </html>
