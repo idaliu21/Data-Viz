@@ -488,6 +488,10 @@ Oscar
     width: 100%;
 }
 
+.oscar-description{
+    margin:auto;
+    text-align: center;
+}
 
 /*bottom additional information*/
 .other{
