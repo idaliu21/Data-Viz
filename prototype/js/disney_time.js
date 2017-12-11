@@ -112,7 +112,7 @@ CountVis.prototype.initVis = function(){
         .attr("x", 750)
         .attr("y", 180)
         .attr("font-size",18)
-        .text("Male and Female Average Dialogue Percentage");
+        .text("Male and Female Average Words");
 
     // Append a path for the area function, so that it is later behind the brush overlay
     vis.timePathup = vis.svg.append("path")
@@ -273,25 +273,25 @@ CountVis.prototype.updateVis = function(){
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
-            .text("Average Male Dialogue: "+Math.round(d.maleAve * 100)+"%");
+            .text("Average Male Words: "+Math.round(d.maleAve * 100)+"%");
 
         vis.focus.select("text.y4")
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
-            .text("Average Male Dialogue: "+Math.round(d.maleAve * 100)+"%");
+            .text("Average Male Words: "+Math.round(d.maleAve * 100)+"%");
 
         vis.focus.select("text.y5")
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
-            .text("Average Female Dialogue: "+Math.round((1-d.maleAve) * 100)+"%");
+            .text("Average Female Words: "+Math.round((1-d.maleAve) * 100)+"%");
 
         vis.focus.select("text.y6")
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
-            .text("Average Female Dialogue: "+Math.round((1-d.maleAve) * 100)+"%");
+            .text("Average Female Words: "+Math.round((1-d.maleAve) * 100)+"%");
 
         vis.focus.select(".x")
             .attr("transform",

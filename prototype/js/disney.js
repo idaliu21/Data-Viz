@@ -204,8 +204,8 @@ DisneyVis.prototype.updateVis = function() {
             });
         document.getElementById("disney-test").innerHTML =
             "<strong>"+"Movie:"+"</strong>"+"<br>"+d.title +"<br>"+
-            "<strong>"+"Female Dialogue: "+"</strong>"+"<br>" + Math.round(d.female_per * 100)+"%"+"</br>"+
-            "<strong>"+"Male Dialogue: "+"</strong>"+"<br>"+ Math.round(d.male_per*100)+"%"+"<br>";
+            "<strong>"+"Female Words: "+"</strong>"+"<br>" + Math.round(d.female_per * 100)+"%"+"</br>"+
+            "<strong>"+"Male Words: "+"</strong>"+"<br>"+ Math.round(d.male_per*100)+"%"+"<br>";
 
         //mouseover for the points
         // Use D3 to select element, change color and size
