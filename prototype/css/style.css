@@ -187,6 +187,10 @@ BANNER
 
 .banner{
     background-color:lightgrey;
+    width:100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     height: 700px;
     background-image: url("images/actor_and_actress.jpg");
 }
@@ -401,12 +405,12 @@ salary wall
 }
 
 .film-data{
-  background-color:white;
-  height: 1800px;
+  /*background-color:white;*/
+  /*height: 1800px;*/
 }
 
 .nudity{
-  height: 900px;
+  /*height: 900px;*/
 }
 
 .young-face{
@@ -447,6 +451,10 @@ disney
     stroke: white;
 }
 
+#disney_time{
+    padding-bottom: 50px;
+}
+
 /*******************************
 nudity
 ********************************/
@@ -464,8 +472,11 @@ nudity
 
 
 .center-icon{
-    padding-left: 500px;
-    padding-top: 100px;
+    /*padding-left: 500px;*/
+    margin: auto;
+    width: 50%;
+    padding-top: 50px;
+    padding-bottom: 50px;
     text-align: left;
 }
 
