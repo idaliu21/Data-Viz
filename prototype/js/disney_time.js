@@ -7,6 +7,7 @@
 var dateParser = d3.timeParse("%Y");
 var formatTime = d3.timeFormat("%Y");
 var bisectDate = d3.bisector(function(d) { return d.key; }).left;
+var formatPercent = d3.format(".0%");
 
 CountVis = function(_parentElement, _data, _MyEventHandler){
     this.parentElement = _parentElement;
@@ -77,7 +78,9 @@ CountVis.prototype.initVis = function(){
 
     vis.yAxis = d3.axisLeft()
         .scale(vis.y)
-        .ticks(6);
+        .tickValues([0.2,0.4,0.6, 0.8])
+        .tickFormat(formatPercent);
+        // .ticks(6);
 
 
     // Set domains
@@ -98,9 +101,13 @@ CountVis.prototype.initVis = function(){
 
     // Axis title
     vis.svg.append("text")
-        .attr("x", 250)
+        .attr("x", 1750)
+        .attr("y", 110)
+        .text("year");
+    vis.svg.append("text")
+        .attr("x", 110)
         .attr("y", -8)
-        .text("movies");
+        .text("percentage");
 
     // Append a path for the area function, so that it is later behind the brush overlay
     vis.timePathup = vis.svg.append("path")
@@ -249,7 +256,7 @@ CountVis.prototype.updateVis = function(){
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+  "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top)+ ")")
-            .text( "Year: "+formatTime(d.key));
+            .text("Year: "+formatTime(d.key) );
 
         vis.focus.select("text.y2")
             .attr("transform",
@@ -279,7 +286,7 @@ CountVis.prototype.updateVis = function(){
             .attr("transform",
                 "translate("  + (vis.x(vis.displayData[i].key) + vis.margin.left )+ "," +
                 (vis.y(vis.displayData[i].maleAve)+ vis.margin.top +10 ) + ")")
-            .text("Average Female Dialogue : "+Math.round((1-d.maleAve) * 100)+"%");
+            .text("Average Female Dialogue: "+Math.round((1-d.maleAve) * 100)+"%");
 
         vis.focus.select(".x")
             .attr("transform",
