@@ -164,7 +164,7 @@ svg_naked.append("text")
     .attr("y", hight+70)
     .attr("font-size",24)
     .style("text-anchor", "end")
-    .text("get partially naked");
+    .text("got partially naked");
 
 
 // /////////////////////////right diagram

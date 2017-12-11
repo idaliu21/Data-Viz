@@ -448,5 +448,9 @@ nudity
     padding-left: 500px;
     padding-top: 100px;
     text-align: left;
+}
 
+/*bottom additional information*/
+.other{
+    height:600px;
 }
