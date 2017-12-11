@@ -21,18 +21,21 @@
 <!-- Load Google Font -->
 <div class="banner">
   <!--<h1 class="white-text">Gender Inequity In Film Industry</h1>-->
-  <h3 class="white-text" id="first-head">Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn ? </h3>
+  <h2 class="white-text" id="first-head">Actors earn 52,249 dollars a year on average<br>Guess how much female actress earn ? </h2>
   <p id="barcontainer" >
     <svg width="480" height="15"> <rect id="bar"> </rect></svg>
   </p>
   <p class="white-text" id="slidetext" >
     Male Average Salary: <span class='bigger'>52,249</span> dollars per year
   </p>
-  <p id="slidercontainer">
-    <input class="slider" id="slider1" type="range" min="0" max="52,249" value="0" orient="horizontal">
-  </p>
-  <p class="white-text">Value: <span id="demo" class="bigger"></span> dollars</p>
-  <p class="white-text slidetext" id="remind">Please use the slider to guess the average salary of an actress per year.</p>
+  <div class="wow tada">
+    <p id="slidercontainer">
+      <input class="slider" id="slider1" type="range" min="0" max="52,249" value="0" orient="horizontal">
+    </p>
+    <p class="white-text">Your Guess of Female Salary: <span id="demo" class="bigger"></span> dollars</p>
+  </div>
+
+
   <button type="button" class="btn btn-primary" id="bannerbutton">Guess</button>
 
 </div>
