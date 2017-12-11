@@ -13,12 +13,6 @@ h1{
     font-size:50px;
 }
 
-h2{
-    margin:auto;
-    padding: 40px;
-    text-align: center;
-    line-height: 150%;
-}
 
 h3{
     margin:auto;
@@ -104,10 +98,6 @@ BANNER
 ********************************/
 #first-head{
     padding-top: 150px;
-}
-
-#Demo{
-    color: #FF804F;
 }
 
 .slidetext{
